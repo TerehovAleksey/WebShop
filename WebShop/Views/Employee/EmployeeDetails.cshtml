@@ -1,0 +1,23 @@
+﻿@model EmployeeView
+
+@{
+    ViewBag.Title = "Details";
+}
+<!DOCTYPE html>
+<div class="bg">
+    <h2 class="title text-center">Детализация сотрудника</h2>
+</div>
+<div>
+    <p><b>Фамилия:</b> @Model.LastName</p>
+    <p><b>Имя:</b> @Model.FirstName</p>
+    <p><b>Отчество:</b> @Model.Patronymic</p>
+    <p><b>Дата рождения:</b> @Model.Birsday.ToShortDateString()</p>
+    <p><b>Полных лет:</b> @(DateTime.Now.Year - Model.Birsday.Year)</p>
+    <p><b>Дата устройства на работу:</b> @Model.HiredDate.ToShortDateString()</p>
+    <p><b>Стаж работы:</b> @(DateTime.Now.Year - Model.HiredDate.Year)</p>
+</div>
+<hr />
+<div>
+    <a asp-action="Index" class="a-link">Назад к списку</a>
+</div>
+

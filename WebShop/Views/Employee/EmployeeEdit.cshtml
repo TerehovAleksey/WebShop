@@ -1,0 +1,49 @@
+﻿@model EmployeeView
+
+@{
+    ViewData["Title"] = "EmployeeEdit";
+}
+<div class="bg">
+    <h2  class="title text-center">Редактирование сотрудника</h2>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="employee-form">
+            <form asp-action="EmployeeEdit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="Id" type="hidden"/>
+                <div class="form-group">
+                    <input asp-for="LastName" placeholder="Фамилия" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="FirstName" placeholder="Имя" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Patronymic" placeholder="Отчество"/>
+                    <span asp-validation-for="Patronymic" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Birsday" class="control-label"></label>
+                    <input type="date" asp-for="Birsday"/>
+                    <span asp-validation-for="Birsday" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="HiredDate" class="control-label"></label>
+                    <input type="date" asp-for="HiredDate"/>
+                    <span asp-validation-for="HiredDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="a-link">Назад к списку</a>
+</div>
+
