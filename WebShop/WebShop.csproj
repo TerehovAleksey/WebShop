@@ -9,4 +9,12 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Catalog\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebShop.Domain\WebShop.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
