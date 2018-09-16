@@ -57,6 +57,15 @@ namespace WebShop.Controllers
         [HttpPost]
         public IActionResult EmployeeEdit(EmployeeView employee)
         {
+            if (employee.HiredDate > System.DateTime.Now)
+            {
+                ModelState.AddModelError("HiredDate", "Ошибка даты приёма на работу");
+            }
+            if (employee.Birsday > System.DateTime.Now.AddYears(-18))
+            {
+                ModelState.AddModelError("HiredDate", "Нельзя брать на работу лиц младше 18 лет");
+            }
+
             if (ModelState.IsValid)
             {
                 if (employee.Id > 0)
