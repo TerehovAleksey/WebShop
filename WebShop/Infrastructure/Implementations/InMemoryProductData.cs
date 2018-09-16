@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebShop.Domain.Entities;
+using WebShop.Domain.Filters;
 using WebShop.Infrastructure.Interfaces;
 
 namespace WebShop.Infrastructure.Implementations
@@ -11,6 +12,7 @@ namespace WebShop.Infrastructure.Implementations
     {
         private readonly List<Brand> _brands;
         private readonly List<Section> _sections;
+        private readonly List<Product> _products;
 
         public InMemoryProductData()
         {
@@ -272,6 +274,129 @@ namespace WebShop.Infrastructure.Implementations
                     Order = 6
                 }
             };
+            _products = new List<Product>()
+            {
+                new Product()
+                {
+                    Id = 1,
+                    Name = "Easy Polo Black Edition",
+                    Price = 1025,
+                    ImageUrl = "product1.jpg",
+                    Order = 0,
+                    SectionId = 2,
+                    BrandId = 1
+                },
+                new Product()
+                {
+                    Id = 2,
+                    Name = "Easy Polo Black Edition",
+                    Price = 1025,
+                    ImageUrl = "product2.jpg",
+                    Order = 1,
+                    SectionId = 2,
+                    BrandId = 1
+                },
+                new Product()
+                {
+                    Id = 3,
+                    Name = "Easy Polo Black Edition",
+                    Price = 1025,
+                    ImageUrl = "product3.jpg",
+                    Order = 2,
+                    SectionId = 2,
+                    BrandId = 1
+                },
+                new Product()
+                {
+                    Id = 4,
+                    Name = "Easy Polo Black Edition",
+                    Price = 1025,
+                    ImageUrl = "product4.jpg",
+                    Order = 3,
+                    SectionId = 2,
+                    BrandId = 1
+                },
+                new Product()
+                {
+                    Id = 5,
+                    Name = "Easy Polo Black Edition",
+                    Price = 1025,
+                    ImageUrl = "product5.jpg",
+                    Order = 4,
+                    SectionId = 2,
+                    BrandId = 2
+                },
+                new Product()
+                {
+                    Id = 6,
+                    Name = "Easy Polo Black Edition",
+                    Price = 1025,
+                    ImageUrl = "product6.jpg",
+                    Order = 5,
+                    SectionId = 2,
+                    BrandId = 2
+                },
+                new Product()
+                {
+                    Id = 7,
+                    Name = "Easy Polo Black Edition",
+                    Price = 1025,
+                    ImageUrl = "product7.jpg",
+                    Order = 6,
+                    SectionId = 2,
+                    BrandId = 2
+                },
+                new Product()
+                {
+                    Id = 8,
+                    Name = "Easy Polo Black Edition",
+                    Price = 1025,
+                    ImageUrl = "product8.jpg",
+                    Order = 7,
+                    SectionId = 25,
+                    BrandId = 2
+                },
+                new Product()
+                {
+                    Id = 9,
+                    Name = "Easy Polo Black Edition",
+                    Price = 1025,
+                    ImageUrl = "product9.jpg",
+                    Order = 8,
+                    SectionId = 25,
+                    BrandId = 2
+                },
+                new Product()
+                {
+                    Id = 10,
+                    Name = "Easy Polo Black Edition",
+                    Price = 1025,
+                    ImageUrl = "product10.jpg",
+                    Order = 9,
+                    SectionId = 25,
+                    BrandId = 3
+                },
+                new Product()
+                {
+                    Id = 11,
+                    Name = "Easy Polo Black Edition",
+                    Price = 1025,
+                    ImageUrl = "product11.jpg",
+                    Order = 10,
+                    SectionId = 25,
+                    BrandId = 3
+                },
+                new Product()
+                {
+                    Id = 12,
+                    Name = "Easy Polo Black Edition",
+                    Price = 1025,
+                    ImageUrl = "product12.jpg",
+                    Order = 11,
+                    SectionId = 25,
+                    BrandId = 3
+                }
+            };
         }
 
         public IEnumerable<Brand> GetBrands()
@@ -282,6 +407,20 @@ namespace WebShop.Infrastructure.Implementations
         public IEnumerable<Section> GetSections()
         {
             return _sections;
+        }
+
+        public IEnumerable<Product> GetProducts(ProiductFilter filter)
+        {
+            var products = _products;
+            if (filter.SectionId.HasValue)
+            {
+                products = products.Where(e => e.SectionId.Equals(filter.SectionId)).ToList();
+            }
+            if (filter.BrandId.HasValue)
+            {
+                products = products.Where(e => e.BrandId.HasValue && e.BrandId.Equals(filter.BrandId)).ToList();
+            }
+            return products;
         }
     }
 }

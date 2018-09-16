@@ -10,10 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Catalog\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\WebShop.Domain\WebShop.Domain.csproj" />
   </ItemGroup>
 
