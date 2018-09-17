@@ -21,12 +21,10 @@ namespace WebShop.Models
         public string Patronymic { get; set; }
 
         [DataType(DataType.Date)]
-        [Range(typeof(DateTime), "1/1/1960", "1/1/2018", ErrorMessage = "Диаппазон дат 1960 - 2018")]
         [Display(Name = "Дата рождения")]
         public DateTime Birsday { get; set; }
 
         [DataType(DataType.Date)]
-        [Range(typeof(DateTime), "1/1/2010", "1/1/2018", ErrorMessage = "Диаппазон дат 1960 - 2018")]
         [Display(Name = "Дата приёма на работу")]
         public DateTime HiredDate { get; set; }
     }

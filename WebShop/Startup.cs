@@ -25,6 +25,7 @@ namespace WebShop
         {
             services.AddMvc();
             services.AddSingleton<IEmployeesData, InMemoryEmployeeData>();
+            services.AddSingleton<IProductData, InMemoryProductData>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

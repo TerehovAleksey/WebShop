@@ -1449,7 +1449,7 @@ h2.title {
 }
 
 
-    .login-form form input, .signup-form form input, .employee-form form input {
+    .login-form form input, .signup-form form input {
         background: #F0F0E9;
         border: medium none;
         color: #696763;
@@ -1464,7 +1464,7 @@ h2.title {
         width: 100%;
     }
 
-    /*.employee-form form input {
+    .input_text {
         background: #F0F0E9;
         border: medium none;
         color: #696763;
@@ -1477,7 +1477,7 @@ h2.title {
         outline: medium none;
         padding-left: 10px;
         width: 100%;
-    }*/
+    }
 
 .login-form form span{
   line-height: 25px;
