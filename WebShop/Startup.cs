@@ -22,8 +22,8 @@ namespace WebShop
         {
             services.AddMvc();
             services.AddSingleton<IEmployeesData, InMemoryEmployeeData>();
-            services.AddSingleton<IProductData, InMemoryProductData>();
 
+            services.AddScoped<IProductData, SqlProductData>();
             services.AddDbContext<WebShopContext>(o => o.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection")));
         }
