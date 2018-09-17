@@ -12,27 +12,27 @@
         <div class="employee-form">
             <form asp-action="EmployeeEdit">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input asp-for="Id" type="hidden" />
+                <input asp-for="Id" type="hidden"/>
                 <div class="form-group">
-                    <input asp-for="LastName" placeholder="Фамилия" />
+                    <input asp-for="LastName" placeholder="Фамилия"  class="input_text"/>
                     <span asp-validation-for="LastName" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input asp-for="FirstName" placeholder="Имя" />
+                    <input asp-for="FirstName" placeholder="Имя"  class="input_text"/>
                     <span asp-validation-for="FirstName" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input asp-for="Patronymic" placeholder="Отчество" />
+                    <input asp-for="Patronymic" placeholder="Отчество"  class="input_text"/>
                     <span asp-validation-for="Patronymic" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Birsday" class="control-label"></label>
-                    <input type="date" asp-for="Birsday" />
+                    <input type="date" asp-for="Birsday"   class="input_text"/>
                     <span asp-validation-for="Birsday" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="HiredDate" class="control-label"></label>
-                    <input type="date" asp-for="HiredDate" />
+                    <input type="date" asp-for="HiredDate"   class="input_text"/>
                     <span asp-validation-for="HiredDate" class="text-danger"></span>
                 </div>
                 <div class="form-group">
