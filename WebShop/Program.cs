@@ -13,6 +13,8 @@ namespace WebShop
         public static void Main(string[] args)
         {
             var host = BuildWebHost(args);
+
+            //вызов метода заполнения БД начальными значениями
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
