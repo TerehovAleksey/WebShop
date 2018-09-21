@@ -23,13 +23,14 @@ namespace WebShop.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-            return View(new LoginViewModel());
+            return View(new RegisterUserViewModel());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel model)
+        public async Task<IActionResult> Login(RegisterUserViewModel model)
         {
+            model.ConfirmPassword = model.Password;
             if (ModelState.IsValid)
             {
                 var loginResult = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
