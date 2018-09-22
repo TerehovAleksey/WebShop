@@ -21,9 +21,9 @@ namespace WebShop.Controllers
         }
 
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult Login(string returnUrl)
         {
-            return View(new RegisterUserViewModel());
+            return View(new RegisterUserViewModel() { ReturnUrl = returnUrl });
         }
 
         [HttpPost]
@@ -84,6 +84,12 @@ namespace WebShop.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
     }
 }
