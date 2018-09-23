@@ -4,7 +4,13 @@
     ViewData["Title"] = "Список ролей";
 }
 
-<h2>Список ролей</h2>
+<div class="bg">
+    <h2 class="title text-center">Список ролей</h2>
+</div>
+
+<p>
+    <a asp-action="Create" asp-controller="Roles" class="btn btn-primary">Новая роль</a>
+</p>
 
 <table class="table">
     @foreach (var item in Model)
@@ -14,11 +20,14 @@
                 @item.Name
             </td>
             <td>
-                <a href="#">Удалить</a>
+                <a href="#" class="a-link">Удалить</a>
             </td>
         </tr>
     }
 </table>
 
-<a asp-action="Create" asp-controller="Roles">Добавить новую роль</a>
+<div>
+    <a asp-action="Index" asp-controller="Users" class="a-link">Назад к списку пользователей</a>
+</div>
+
 

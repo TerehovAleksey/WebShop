@@ -1479,6 +1479,22 @@ h2.title {
         width: 100%;
     }
 
+    .label_text{
+    	margin-left: 10px;
+    	color: #696763;
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        font-weight: 300;
+        padding-left: 10px;
+    }
+
+    h3.h3_text
+    {
+        color: #696763;
+    	font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+    }
+
 .login-form form span{
   line-height: 25px;
 }

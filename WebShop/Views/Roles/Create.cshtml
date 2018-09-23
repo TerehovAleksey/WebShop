@@ -3,16 +3,26 @@
     ViewData["Title"] = "Новая роль";
 }
 
-<h2>Новая роль</h2>
+<div class="bg">
+    <h2 class="title text-center">Новая роль</h2>
+</div>
 
-<div asp-validation-summary="All" class="text-danger"></div>
-
-<form asp-action="Create" method="post">
-    <div class="form-group">
-        <label for="name">Новая роль</label>
-        <input name="name" class="form-control"/>
+<div class="row">
+    <div class="col-md-4">
+        <div class="employee-form">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <form asp-action="Create" method="post">
+                <div class="form-group">
+                    <label for="name">Новая роль</label>
+                    <input name="name" class="form-control" />
+                </div>
+                <button type="submit">Добавить</button>
+            </form>
+        </div>
     </div>
-    <button type="submit">Добавить</button>
-</form>
+</div>
 
-<a asp-action="Index" asp-controller="Roles">К списку ролей</a>
+<div style="margin-top:15px;">
+    <a asp-action="Index" asp-controller="Roles" class="a-link">К списку ролей</a>
+</div>
+

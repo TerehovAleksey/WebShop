@@ -14,10 +14,12 @@ namespace WebShop.Controllers
     public class UsersController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public UsersController(UserManager<ApplicationUser> userManager)
+        public UsersController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         public IActionResult Index()
@@ -34,7 +36,19 @@ namespace WebShop.Controllers
             {
                 return NotFound();
             }
-            EditUserViewModel model = new EditUserViewModel { Email = user.Email, Id = user.Id, Phone = user.PhoneNumber, UserName = user.UserName };
+
+            var userRoles = await _userManager.GetRolesAsync(user);
+            var allRoles = _roleManager.Roles.ToList();
+
+            EditUserViewModel model = new EditUserViewModel
+            {
+                Email = user.Email,
+                Id = user.Id,
+                Phone = user.PhoneNumber,
+                UserName = user.UserName,
+                AllRoles = allRoles,
+                UserRoles = userRoles
+            };
             return View(model);
         }
 
@@ -53,6 +67,16 @@ namespace WebShop.Controllers
                     var result = await _userManager.UpdateAsync(user);
                     if (result.Succeeded)
                     {
+                        // получем список ролей пользователя
+                        var userRoles = await _userManager.GetRolesAsync(user);
+                        // получаем список ролей, которые были добавлены
+                        var addedRoles = model.UserRoles.Except(userRoles);
+                        // получаем роли, которые были удалены
+                        var removedRoles = userRoles.Except(model.UserRoles);
+
+                        await _userManager.AddToRolesAsync(user, addedRoles);
+                        await _userManager.RemoveFromRolesAsync(user, removedRoles);
+
                         return RedirectToAction("Index");
                     }
                     else

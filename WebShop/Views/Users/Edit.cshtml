@@ -1,39 +1,64 @@
-﻿@model WebShop.Models.Users.EditUserViewModel
+﻿@using Microsoft.AspNetCore.Identity
+@model WebShop.Models.Users.EditUserViewModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Редактирование пользователя";
 }
 
+<div class="bg">
+    <h2 class="title text-center">Редактирование пользователя</h2>
+</div>
+
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <input type="hidden" asp-for="Id"/>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserName" class="control-label"></label>
-                <input asp-for="UserName" class="form-control" />
-                <span asp-validation-for="UserName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Phone" class="control-label"></label>
-                <input asp-for="Phone" class="form-control" />
-                <span asp-validation-for="Phone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </form>
+    <div class="col-md-12">
+        <div class="employee-form">
+            <form asp-action="Edit">
+                <div class="col-md-4">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <input type="hidden" asp-for="Id" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="UserName" class="control-label"></label>
+                        <input asp-for="UserName" placeholder="Имя пользователя" class="input_text" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" placeholder="Email" class="input_text" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Phone" class="control-label"></label>
+                        <input asp-for="Phone" placeholder="Телефон" class="input_text" />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default">Сохранить</button>
+                    </div>
+                </div>
+                <div class="col-md-offset-2 col-md-4">
+                    <h3 class="h3_text">Роли пользователя:</h3>
+                    @if (Model.AllRoles.Count == 0)
+                    {
+                        <p>роли в системе не определены</p>
+                    }
+                    else
+                    {
+                        @foreach (IdentityRole role in Model.AllRoles)
+                        {
+                            <input type="checkbox" name="UserRoles" value="@role.Name"
+                                   @(Model.UserRoles.Contains(role.Name) ? "checked=\"checked\"" : "") /><span class="label_text">  @role.Name</span><br />
+                         }
+                    }
+                </div>
+
+            </form>
+        </div>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="a-link">Назад к списку пользователей</a>
 </div>
 

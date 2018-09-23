@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebShop.Models.Users
 {
@@ -15,5 +17,14 @@ namespace WebShop.Models.Users
         [Display(Name = "Номер телефона")]
         [DataType(DataType.PhoneNumber)]
         public string Phone { get; set; }
+
+        public List<IdentityRole> AllRoles { get; set; }
+        public IList<string> UserRoles { get; set; }
+
+        public EditUserViewModel()
+        {
+            AllRoles = new List<IdentityRole>();
+            UserRoles = new List<string>();
+        }
     }
 }
