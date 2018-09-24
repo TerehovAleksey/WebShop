@@ -4,7 +4,7 @@ using WebShop.Domain.Entities;
 
 namespace WebShop.DAL
 {
-    public class WebShopContext : IdentityDbContext<User>
+    public class WebShopContext : IdentityDbContext<ApplicationUser>
     {
         public WebShopContext(DbContextOptions options):base(options)
         {

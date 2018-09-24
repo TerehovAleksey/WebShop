@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebShop.Domain.Entities;
@@ -11,10 +8,10 @@ namespace WebShop.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -23,14 +20,13 @@ namespace WebShop.Controllers
         [HttpGet]
         public IActionResult Login(string returnUrl)
         {
-            return View(new RegisterUserViewModel() { ReturnUrl = returnUrl });
+            return View(new LoginUserViewModel() { ReturnUrl = returnUrl });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(RegisterUserViewModel model)
+        public async Task<IActionResult> Login(LoginUserViewModel model)
         {
-            model.ConfirmPassword = model.Password;
             if (ModelState.IsValid)
             {
                 var loginResult = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
@@ -50,7 +46,7 @@ namespace WebShop.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-            return View("Login", new RegisterUserViewModel());
+            return View(new RegisterUserViewModel());
         }
 
         [HttpPost, ValidateAntiForgeryToken]
@@ -58,7 +54,7 @@ namespace WebShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.UserName, Email = model.UserName+"@test.com" };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.UserName+"@test.com" };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -74,7 +70,7 @@ namespace WebShop.Controllers
                 }
             }
             {
-                return View("Login", model);
+                return View(model);
             }
         }
 

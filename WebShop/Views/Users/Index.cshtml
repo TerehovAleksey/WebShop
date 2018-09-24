@@ -1,0 +1,47 @@
+﻿@model IEnumerable<WebShop.Domain.Entities.ApplicationUser>
+
+@{
+    ViewData["Title"] = "Список пользователей";
+}
+
+<div class="bg">
+    <h2 class="title text-center">Список пользователей</h2>
+</div>
+
+<a asp-action="Index" asp-controller="Roles" class="btn btn-primary">Управление ролями</a>
+
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    Имя пользователя
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Номер телефона
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="a-link">Изменить</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id" class="a-link">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
