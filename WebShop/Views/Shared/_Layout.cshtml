@@ -11,24 +11,30 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>@ViewBag.Title | E-Shopper</title>
+
+    <!--секция стилей-->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/css/font-awesome.min.css" rel="stylesheet">
-    <link href="~/css/prettyPhoto.css" rel="stylesheet">
-    <link href="~/css/price-range.css" rel="stylesheet">
-    <link href="~/css/animate.css" rel="stylesheet">
-    <link href="~/css/main.css" rel="stylesheet">
-    <link href="~/css/responsive.css" rel="stylesheet">
+    <link href="~/css/topography.css" rel="stylesheet">
+    <environment include="Development">
+        <link href="~/css/prettyPhoto.css" rel="stylesheet">
+        <link href="~/css/price-range.css" rel="stylesheet">
+        <link href="~/css/animate.css" rel="stylesheet">
+        <link href="~/css/main.css" rel="stylesheet">
+        <link href="~/css/responsive.css" rel="stylesheet">
+    </environment>
+    <environment exclude="Development">
+        <link href="~/css/site.min.css" rel="stylesheet" />
+    </environment>
     @RenderSection("styles", false)
-    <!--[if lt IE 9]>
-    <script src="~/js/html5shiv.js"></script>
-    <script src="~/js/respond.min.js"></script>
-    <![endif]-->
+    <!--конец секции стилей-->
+
     <link rel="shortcut icon" href="~/images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="~/images/ico/apple-touch-icon-57-precomposed.png">
-</head><!--/head-->
+</head>
 
 <body>
     @await Html.PartialAsync("Partial/_Header")
@@ -39,16 +45,28 @@
 
     @await Html.PartialAsync("Partial/_Footer")
 
+
+    <!-- секция скриптов -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="~/js/jquery.scrollUp.min.js"></script>
-    <script src="~/js/price-range.js"></script>
-    <script src="~/js/jquery.prettyPhoto.js"></script>
-    <script src="~/js/main.js"></script>
+
+    <environment include="Development">
+        <script src="~/js/jquery.scrollUp.min.js"></script>
+        <script src="~/js/jquery.prettyPhoto.js"></script>
+        <script src="~/js/price-range.js"></script>
+        <script src="~/js/main.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/site.min.js"></script>
+    </environment>
+
     @RenderSection("scripts", false)
+
+    <!-- конец секции скриптов -->
+
 </body>
 
 </html>
