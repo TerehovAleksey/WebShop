@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebShop.Domain.Entities;
 using WebShop.Models.Account;
+using WebShop.Domain;
 
 namespace WebShop.Controllers
 {
@@ -59,6 +60,7 @@ namespace WebShop.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, false);
+                    await _userManager.AddToRoleAsync(user, Constants.Roles.User);
                     return RedirectToAction("Index", "Home");
                 }
                 else

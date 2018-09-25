@@ -1,4 +1,5 @@
-﻿@model IEnumerable<WebShop.Models.EmployeeView>
+﻿@using WebShop.Domain
+@model IEnumerable<WebShop.Models.EmployeeView>
 
 @{
     ViewData["Title"] = "Список сотрудников";
@@ -14,48 +15,52 @@
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.LastName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Patronymic)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Birsday)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.HiredDate)
-                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Patronymic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Birsday)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HiredDate)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Patronymic)
-            </td>
-            <td>
-                @item.Birsday.ToShortDateString()
-            </td>
-            <td>
-                @item.HiredDate.ToShortDateString()
-            </td>
-            <td>
-                <a asp-controller="Employee" asp-action="EmployeeDetails" asp-route-id=@item.Id class="a-link">Детали</a> |
-                <a asp-controller="Employee" asp-action="EmployeeEdit" asp-route-id=@item.Id class="a-link">Редактировать</a> |
-                <a asp-controller="Employee" asp-action="EmployeeDelete" asp-route-id=@item.Id class="a-link">Удалить</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Patronymic)
+                </td>
+                <td>
+                    @item.Birsday.ToShortDateString()
+                </td>
+                <td>
+                    @item.HiredDate.ToShortDateString()
+                </td>
+                <td>
+                    <a asp-controller="Employee" asp-action="EmployeeDetails" asp-route-id=@item.Id class="a-link">Детали</a>
+                    @if (User.IsInRole(Constants.Roles.Administrator))
+                    {
+                        <text> | <a asp-controller="Employee" asp-action="EmployeeEdit" asp-route-id=@item.Id class="a-link">Редактировать</a> |
+                            <a asp-controller="Employee" asp-action="EmployeeDelete" asp-route-id=@item.Id class="a-link">Удалить</a></text>
+                    }
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
