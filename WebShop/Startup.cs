@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -7,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using WebShop.DAL;
 using WebShop.Domain.Entities;
+using WebShop.Infrastructure;
 using WebShop.Infrastructure.Implementations;
 using WebShop.Infrastructure.Interfaces;
 
@@ -26,12 +28,15 @@ namespace WebShop
             //внедрение зависимостей
             services.AddSingleton<IEmployeesData, InMemoryEmployeeData>();
             services.AddScoped<IProductData, SqlProductData>();
-            services.AddDbContext<WebShopContext>(o => o.UseSqlServer(
-                Configuration.GetConnectionString("Connection1")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddDbContext<WebShopContext>(o => o.UseSqlServer(Configuration.GetConnectionString("Connection1"))); //EF
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()//Identity
                 .AddEntityFrameworkStores<WebShopContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();//корзина
+            services.AddScoped<ICartService, CoocieCartService>();
 
             //конфигурация идентификации
             services.Configure<IdentityOptions>(o =>

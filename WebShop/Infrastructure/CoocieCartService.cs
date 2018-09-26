@@ -3,8 +3,10 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using WebShop.Domain.Filters;
 using WebShop.Infrastructure.Interfaces;
 using WebShop.Models.Cart;
+using WebShop.Models.Products;
 
 namespace WebShop.Infrastructure
 {
@@ -99,7 +101,25 @@ namespace WebShop.Infrastructure
 
         public CartViewModel TransformCart()
         {
-            var products = _productData.GetProducts(new Domain.Filters.ProiductFilter { })
+            var products = _productData.GetProducts(new ProiductFilter()
+            {
+                Ids = Cart.Items.Select(x => x.ProductId).ToList()
+            }).Select(p => new ProductViewModel()
+            {
+                Id = p.Id,
+                ImageUrl = p.ImageUrl,
+                Name = p.Name,
+                Order = p.Order,
+                Price = p.Price,
+                Brand = p.Brand!=null?p.Brand.Name:string.Empty
+            }).ToList();
+
+            var r = new CartViewModel
+            {
+                Items = Cart.Items.ToDictionary(x => products.First(y => y.Id == x.ProductId), x => x.Quantity)
+            };
+            return r;
         }
+
     }
 }
