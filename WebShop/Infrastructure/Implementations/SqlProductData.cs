@@ -24,9 +24,20 @@ namespace WebShop.Infrastructure.Implementations
            return _db.Brands.ToList();
         }
 
+        public Product GetProductById(int id)
+        {
+            return _db.Products.Include("Brand").Include("Section").FirstOrDefault(x => x.Id.Equals(id));
+        }
+
         public IEnumerable<Product> GetProducts(ProiductFilter filter)
         {
-            var query = _db.Products.AsQueryable();
+            var query = _db.Products.Include("Brand").Include("Section").AsQueryable();
+
+            if (filter.Ids != null && filter.Ids.Count>0)
+            {
+                //?????///
+            }
+
             if (filter.BrandId.HasValue)
             {
                 query = query.Where(x => x.BrandId.HasValue && x.BrandId.Equals(filter.BrandId));

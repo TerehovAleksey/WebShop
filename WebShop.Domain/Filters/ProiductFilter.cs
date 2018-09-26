@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace WebShop.Domain.Filters
 {
@@ -8,5 +6,6 @@ namespace WebShop.Domain.Filters
     {
         public int? SectionId { get; set; }
         public int? BrandId { get; set; }
+        public List<int> Ids { get; set; }
     }
 }
