@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using WebShop.Infrastructure.Interfaces;
 using WebShop.Models;
+using WebShop.Domain;
 
 namespace WebShop.Controllers
 {
+    [Authorize(Roles = Constants.Roles.User)]
     public class EmployeeController : Controller
     {
         private readonly IEmployeesData _employeeData;
@@ -29,6 +31,7 @@ namespace WebShop.Controllers
             return View(employee);
         }
 
+        [Authorize(Roles = Constants.Roles.Administrator)]
         public IActionResult EmployeeDelete(int id)
         {
 
@@ -37,6 +40,7 @@ namespace WebShop.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = Constants.Roles.Administrator)]
         public IActionResult EmployeeEdit(int? id)
         {
             EmployeeView employeeView = null;
@@ -56,6 +60,7 @@ namespace WebShop.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = Constants.Roles.Administrator)]
         public IActionResult EmployeeEdit(EmployeeView employee)
         {
             if (employee.HiredDate > System.DateTime.Now)
