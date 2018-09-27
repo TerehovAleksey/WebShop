@@ -29,7 +29,7 @@ namespace WebShop
             services.AddSingleton<IEmployeesData, InMemoryEmployeeData>();
             services.AddScoped<IProductData, SqlProductData>();
 
-            services.AddDbContext<WebShopContext>(o => o.UseSqlServer(Configuration.GetConnectionString("Connection1"))); //EF
+            services.AddDbContext<WebShopContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); //EF
 
             services.AddIdentity<ApplicationUser, IdentityRole>()//Identity
                 .AddEntityFrameworkStores<WebShopContext>()

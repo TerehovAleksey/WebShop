@@ -33,11 +33,6 @@ namespace WebShop.Infrastructure.Implementations
         {
             var query = _db.Products.Include("Brand").Include("Section").AsQueryable();
 
-            if (filter.Ids != null && filter.Ids.Count>0)
-            {
-                //?????///
-            }
-
             if (filter.BrandId.HasValue)
             {
                 query = query.Where(x => x.BrandId.HasValue && x.BrandId.Equals(filter.BrandId));
