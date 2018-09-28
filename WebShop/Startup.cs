@@ -29,7 +29,7 @@ namespace WebShop
             services.AddSingleton<IEmployeesData, InMemoryEmployeeData>();
             services.AddScoped<IProductData, SqlProductData>();
 
-            services.AddDbContext<WebShopContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); //EF
+            services.AddDbContext<WebShopContext>(o => o.UseSqlServer(Configuration.GetConnectionString("Connection1"))); //EF
 
             services.AddIdentity<ApplicationUser, IdentityRole>()//Identity
                 .AddEntityFrameworkStores<WebShopContext>()
@@ -62,7 +62,7 @@ namespace WebShop
                 o.LogoutPath = "/Account/Logout";
                 o.AccessDeniedPath = "/Account/AccessDenied";
                 o.SlidingExpiration = true;
-            });          
+            });
 
             //добавление mvc-архитектуры
             services.AddMvc();
@@ -81,6 +81,10 @@ namespace WebShop
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                name: "areas",
+                template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

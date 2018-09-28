@@ -11,6 +11,9 @@
 
   <ItemGroup>
     <None Include="bundleconfig.json" />
+    <None Include="wwwroot\AreaAdmin\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\AreaAdmin\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\AreaAdmin\js\custom.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +33,11 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
   </ItemGroup>
 
 </Project>
