@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using WebShop.Domain.Entities.Base;
@@ -27,6 +28,7 @@ namespace WebShop.Domain.Entities
         public string ImageUrl { get; set; }
 
         //цена
+        [DataType(DataType.Currency)]
         public decimal Price { get; set; }
     }
 }
