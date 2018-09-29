@@ -30,7 +30,7 @@ namespace WebShop
             services.AddScoped<IProductData, SqlProductData>();
             services.AddScoped<IOrderService, SqlOrderService>();
 
-            services.AddDbContext<WebShopContext>(o => o.UseSqlServer(Configuration.GetConnectionString("Connection1"))); //EF
+            services.AddDbContext<WebShopContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); //EF
 
             services.AddIdentity<ApplicationUser, IdentityRole>()//Identity
                 .AddEntityFrameworkStores<WebShopContext>()

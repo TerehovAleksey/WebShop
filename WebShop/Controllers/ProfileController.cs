@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebShop.Infrastructure.Interfaces;
 using WebShop.Models.Order;
 
 namespace WebShop.Controllers
 {
+    [Authorize]
     public class ProfileController : Controller
     {
         private readonly IOrderService _orderService;

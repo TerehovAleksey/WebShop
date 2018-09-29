@@ -35,8 +35,13 @@ namespace WebShop.Infrastructure.Implementations
 
         public Order CreateOrder(OrderViewModel orderModel, CartViewModel transformCart, string userName)
         {
-            var user = _userManager.FindByNameAsync(userName).Result;
+            ApplicationUser user = null;
 
+            if (!string.IsNullOrEmpty(userName))
+            {
+                user = _userManager.FindByNameAsync(userName).Result;
+            }
+            
             using (var transaction = _context.Database.BeginTransaction())
             {
                 var order = new Order()
