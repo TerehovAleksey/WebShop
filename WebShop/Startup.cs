@@ -28,6 +28,7 @@ namespace WebShop
             //внедрение зависимостей
             services.AddSingleton<IEmployeesData, InMemoryEmployeeData>();
             services.AddScoped<IProductData, SqlProductData>();
+            services.AddScoped<IOrderService, SqlOrderService>();
 
             services.AddDbContext<WebShopContext>(o => o.UseSqlServer(Configuration.GetConnectionString("Connection1"))); //EF
 
@@ -36,7 +37,8 @@ namespace WebShop
                 .AddDefaultTokenProviders();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();//корзина
-            services.AddScoped<ICartService, CoocieCartService>();
+            services.AddScoped<ICartService, CoocieCartService>();          
+
 
             //конфигурация идентификации
             services.Configure<IdentityOptions>(o =>
