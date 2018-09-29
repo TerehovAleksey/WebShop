@@ -30,5 +30,11 @@ namespace WebShop.Areas.Admin.Controllers
             var products = _productData.GetProducts(new ProiductFilter());
             return View(products);
         }
+
+        public IActionResult ProductEdit(int id)
+        {
+            var product = _productData.GetProductById(id);
+            return View(product);
+        }
     }
 }
