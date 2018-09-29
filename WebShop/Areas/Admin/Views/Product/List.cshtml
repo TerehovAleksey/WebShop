@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<WebShop.Domain.Entities.Product>
 
-<p>
-    <a asp-action="Create">Новый продукт</a>
-</p>
+<div>
+    <a asp-action="New" asp-controller="Product" asp-area="Admin" class="btn btn-default">Новый продукт</a>
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -55,7 +55,7 @@
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
-                <a asp-action="ProductEdit" asp-controller="Home" asp-area="Admin" asp-route-id="@item.Id">Редактировать</a> |
+                <a asp-action="Edit" asp-controller="Product" asp-area="Admin" asp-route-id="@item.Id">Редактировать</a> |
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>

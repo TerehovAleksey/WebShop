@@ -13,28 +13,9 @@ namespace WebShop.Areas.Admin.Controllers
     [Area("Admin"), Authorize(Roles = Constants.Roles.Administrator)]
     public class HomeController : Controller
     {
-        private readonly IProductData _productData;
-
-        public HomeController(IProductData productData)
-        {
-            _productData = productData;
-        }
-
         public IActionResult Index()
         {
             return View();
-        }
-
-        public IActionResult ProductList()
-        {
-            var products = _productData.GetProducts(new ProiductFilter());
-            return View(products);
-        }
-
-        public IActionResult ProductEdit(int id)
-        {
-            var product = _productData.GetProductById(id);
-            return View(product);
         }
     }
 }
