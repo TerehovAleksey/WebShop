@@ -28,6 +28,7 @@ namespace WebShop
             //внедрение зависимостей
             services.AddSingleton<IEmployeesData, InMemoryEmployeeData>();
             services.AddScoped<IProductData, SqlProductData>();
+            services.AddScoped<IOrderService, SqlOrderService>();
 
             services.AddDbContext<WebShopContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); //EF
 
@@ -36,7 +37,8 @@ namespace WebShop
                 .AddDefaultTokenProviders();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();//корзина
-            services.AddScoped<ICartService, CoocieCartService>();
+            services.AddScoped<ICartService, CoocieCartService>();          
+
 
             //конфигурация идентификации
             services.Configure<IdentityOptions>(o =>
@@ -62,7 +64,7 @@ namespace WebShop
                 o.LogoutPath = "/Account/Logout";
                 o.AccessDeniedPath = "/Account/AccessDenied";
                 o.SlidingExpiration = true;
-            });          
+            });
 
             //добавление mvc-архитектуры
             services.AddMvc();
@@ -81,6 +83,10 @@ namespace WebShop
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                name: "areas",
+                template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
