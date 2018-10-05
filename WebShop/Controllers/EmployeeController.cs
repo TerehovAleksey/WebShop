@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WebShop.Infrastructure.Interfaces;
-using WebShop.Models;
+using WebShop.Interfaces;
+using WebShop.Domain.Models;
 using WebShop.Domain;
 
 namespace WebShop.Controllers

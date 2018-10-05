@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebShop.Domain.Entities;
-using WebShop.Models.Account;
+using WebShop.Domain.Models.Account;
 using WebShop.Domain;
 
 namespace WebShop.Controllers

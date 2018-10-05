@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebShop.Domain.Entities;
-using WebShop.Models.Users;
+using WebShop.Domain.Models.Users;
 
 namespace WebShop.Controllers
 {

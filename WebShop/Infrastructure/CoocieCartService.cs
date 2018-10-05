@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using WebShop.Domain.Filters;
-using WebShop.Infrastructure.Interfaces;
-using WebShop.Models.Cart;
-using WebShop.Models.Products;
+using WebShop.Interfaces;
+using WebShop.Domain.Models.Cart;
+using WebShop.Domain.Models.Products;
 
 namespace WebShop.Infrastructure
 {

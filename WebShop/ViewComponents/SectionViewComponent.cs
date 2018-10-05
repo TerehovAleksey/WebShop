@@ -3,8 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebShop.Infrastructure.Interfaces;
-using WebShop.Models.Products;
+using WebShop.Interfaces;
+using WebShop.Domain.Models.Products;
 
 namespace WebShop.ViewComponents
 {
