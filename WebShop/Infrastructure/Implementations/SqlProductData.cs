@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using WebShop.DAL;
 using WebShop.Domain.Entities;
 using WebShop.Domain.Filters;
-using WebShop.Infrastructure.Interfaces;
+using WebShop.Interfaces;
 
 namespace WebShop.Infrastructure.Implementations
 {

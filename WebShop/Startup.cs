@@ -6,11 +6,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using WebShop.Clients.Services.Values;
 using WebShop.DAL;
 using WebShop.Domain.Entities;
 using WebShop.Infrastructure;
 using WebShop.Infrastructure.Implementations;
-using WebShop.Infrastructure.Interfaces;
+using WebShop.Interfaces;
+using WebShop.Interfaces.Api;
 
 namespace WebShop
 {
@@ -37,8 +39,9 @@ namespace WebShop
                 .AddDefaultTokenProviders();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();//корзина
-            services.AddScoped<ICartService, CoocieCartService>();          
+            services.AddScoped<ICartService, CoocieCartService>();
 
+            services.AddTransient<IValuesService, ValuesClient>();
 
             //конфигурация идентификации
             services.Configure<IdentityOptions>(o =>

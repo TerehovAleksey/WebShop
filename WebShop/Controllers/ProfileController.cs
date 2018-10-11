@@ -2,8 +2,8 @@
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WebShop.Infrastructure.Interfaces;
-using WebShop.Models.Order;
+using WebShop.Interfaces;
+using WebShop.Domain.Models.Order;
 
 namespace WebShop.Controllers
 {

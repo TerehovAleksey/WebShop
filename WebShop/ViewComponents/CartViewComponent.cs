@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using WebShop.Infrastructure.Interfaces;
+using WebShop.Interfaces;
 
 namespace WebShop.ViewComponents
 {

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebShop.Domain;
 using WebShop.Domain.Filters;
-using WebShop.Infrastructure.Interfaces;
+using WebShop.Interfaces;
 
 namespace WebShop.Areas.Admin.Controllers
 {

@@ -6,9 +6,9 @@ using System.Linq;
 using WebShop.DAL;
 using WebShop.Domain.Entities;
 using WebShop.Domain.Entities.Base;
-using WebShop.Infrastructure.Interfaces;
-using WebShop.Models.Cart;
-using WebShop.Models.Order;
+using WebShop.Interfaces;
+using WebShop.Domain.Models.Cart;
+using WebShop.Domain.Models.Order;
 
 namespace WebShop.Infrastructure.Implementations
 {

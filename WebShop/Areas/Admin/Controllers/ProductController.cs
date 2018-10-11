@@ -11,7 +11,7 @@ using WebShop.DAL;
 using WebShop.Domain;
 using WebShop.Domain.Entities;
 using WebShop.Domain.Filters;
-using WebShop.Infrastructure.Interfaces;
+using WebShop.Interfaces;
 
 namespace WebShop.Areas.Admin.Controllers
 {
