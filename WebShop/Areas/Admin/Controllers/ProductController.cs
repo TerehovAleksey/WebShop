@@ -48,7 +48,7 @@ namespace WebShop.Areas.Admin.Controllers
             {
                 Id = product.Id,
                 Brand = product.Brand.Name,
-                Section = product.Section.Name,
+                //Section = product.Section.Name,
                 Name = product.Name,
                 Price = product.Price,
                 ImagePath = product.ImageUrl
@@ -116,7 +116,7 @@ namespace WebShop.Areas.Admin.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var product = _productData.GetProductById(id);
-            _context.Products.Remove(product);
+           // _context.Products.Remove(product);
             await _context.SaveChangesAsync();
             return RedirectToAction("List");
         }
