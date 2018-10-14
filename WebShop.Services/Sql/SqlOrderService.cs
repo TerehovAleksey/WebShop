@@ -3,14 +3,14 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using WebShop.DAL;
 using WebShop.Domain.Entities;
 using WebShop.Domain.Entities.Base;
 using WebShop.Interfaces;
 using WebShop.Domain.Models.Cart;
 using WebShop.Domain.Models.Order;
+using WebShop.DAL;
 
-namespace WebShop.Infrastructure.Implementations
+namespace WebShop.Services.Sql
 {
     public class SqlOrderService : IOrderService
     {

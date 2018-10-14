@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using WebShop.Clients.Services.Values;
+using WebShop.Clients.Services.Employees;
 using WebShop.DAL;
 using WebShop.Domain.Entities;
-using WebShop.Infrastructure;
-using WebShop.Infrastructure.Implementations;
 using WebShop.Interfaces;
-using WebShop.Interfaces.Api;
+using WebShop.Services;
+using WebShop.Services.InMemory;
+using WebShop.Services.Sql;
 
 namespace WebShop
 {
@@ -28,11 +28,12 @@ namespace WebShop
         public void ConfigureServices(IServiceCollection services)
         {
             //внедрение зависимостей
-            services.AddSingleton<IEmployeesData, InMemoryEmployeeData>();
+            services.AddTransient<IEmployeesData, EmployeesClient>();
             services.AddScoped<IProductData, SqlProductData>();
             services.AddScoped<IOrderService, SqlOrderService>();
 
-            services.AddDbContext<WebShopContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); //EF
+            //EF
+            services.AddDbContext<WebShopContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); 
 
             services.AddIdentity<ApplicationUser, IdentityRole>()//Identity
                 .AddEntityFrameworkStores<WebShopContext>()
@@ -40,8 +41,6 @@ namespace WebShop
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();//корзина
             services.AddScoped<ICartService, CoocieCartService>();
-
-            services.AddTransient<IValuesService, ValuesClient>();
 
             //конфигурация идентификации
             services.Configure<IdentityOptions>(o =>

@@ -10,6 +10,13 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebShop.DAL\WebShop.DAL.csproj" />
+    <ProjectReference Include="..\WebShop.Interfaces\WebShop.Interfaces.csproj" />
+    <ProjectReference Include="..\WebShop.Services\WebShop.Services.csproj" />
   </ItemGroup>
 
 </Project>

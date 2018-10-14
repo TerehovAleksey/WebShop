@@ -31,10 +31,8 @@ namespace WebShop.Controllers
             return View(employee);
         }
 
-        [Authorize(Roles = Constants.Roles.Administrator)]
         public IActionResult EmployeeDelete(int id)
         {
-
             _employeeData.Delete(id);
             return RedirectToAction(nameof(Index));
         }
@@ -76,16 +74,7 @@ namespace WebShop.Controllers
             {
                 if (employee.Id > 0)
                 {
-                    var item = _employeeData.GetById(employee.Id);
-                    if (item is null)
-                    {
-                        return NotFound();
-                    }
-                    item.FirstName = employee.FirstName;
-                    item.LastName = employee.LastName;
-                    item.Patronymic = employee.Patronymic;
-                    item.Birsday = employee.Birsday;
-                    item.HiredDate = employee.HiredDate;
+                    _employeeData.UpdateEmployee(employee.Id, employee);
                 }
                 else
                 {

@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using WebShop.Interfaces;
 using WebShop.Domain.Models;
+using WebShop.Interfaces;
 
-namespace WebShop.Infrastructure.Implementations
+namespace WebShop.Services.InMemory
 {
     public class InMemoryEmployeeData : IEmployeesData
     {
@@ -51,11 +50,6 @@ namespace WebShop.Infrastructure.Implementations
             _employees.Add(model);
         }
 
-        public void Commit()
-        {
-            throw new NotImplementedException();
-        }
-
         public void Delete(int id)
         {
             var employee = GetById(id);
@@ -71,6 +65,28 @@ namespace WebShop.Infrastructure.Implementations
         public EmployeeView GetById(int id)
         {
             return _employees.FirstOrDefault(e => e.Id == id);
+        }
+
+        public EmployeeView UpdateEmployee(int id, EmployeeView employee)
+        {
+            if (employee==null)
+            {
+                throw new ArgumentNullException(nameof(employee));
+            }
+            var data = _employees.FirstOrDefault(e => e.Id == id);
+            if (data != null)
+            {
+                data.Birsday = employee.Birsday;
+                data.FirstName = employee.FirstName;
+                data.HiredDate = employee.HiredDate;
+                data.LastName = employee.LastName;
+                data.Patronymic = employee.Patronymic;
+                return data;
+            }
+            else
+            {
+                throw new InvalidOperationException("Сотрудник не найден");
+            }
         }
     }
 }

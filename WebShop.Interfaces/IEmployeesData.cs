@@ -9,7 +9,7 @@ namespace WebShop.Interfaces
 
         EmployeeView GetById(int id);
 
-        void Commit();
+        EmployeeView UpdateEmployee(int id, EmployeeView employee);
 
         void AddNew(EmployeeView model);
 

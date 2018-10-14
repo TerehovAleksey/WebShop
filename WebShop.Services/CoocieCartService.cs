@@ -4,11 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using WebShop.Domain.Filters;
-using WebShop.Interfaces;
 using WebShop.Domain.Models.Cart;
 using WebShop.Domain.Models.Products;
+using WebShop.Interfaces;
 
-namespace WebShop.Infrastructure
+namespace WebShop.Services
 {
     public class CoocieCartService : ICartService
     {

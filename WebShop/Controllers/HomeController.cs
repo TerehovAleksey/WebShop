@@ -1,24 +1,16 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using WebShop.Domain.Entities;
-using WebShop.Interfaces.Api;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace WebShop.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IValuesService _valuesCervice;
-
-        public HomeController(IValuesService valuesCervice)
+        public HomeController()
         {
-            _valuesCervice = valuesCervice;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var values = await _valuesCervice.GetAsync();
-            return View(values);
+            return View();
         }
 
         public IActionResult Shop()

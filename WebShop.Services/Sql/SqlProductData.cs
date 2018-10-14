@@ -1,14 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using WebShop.DAL;
 using WebShop.Domain.Entities;
 using WebShop.Domain.Filters;
 using WebShop.Interfaces;
 
-namespace WebShop.Infrastructure.Implementations
+namespace WebShop.Services.Sql
 {
     public class SqlProductData : IProductData
     {

@@ -6,13 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Infrastructure\Interfaces\**" />
     <Compile Remove="Models\**" />
-    <Content Remove="Infrastructure\Interfaces\**" />
     <Content Remove="Models\**" />
-    <EmbeddedResource Remove="Infrastructure\Interfaces\**" />
     <EmbeddedResource Remove="Models\**" />
-    <None Remove="Infrastructure\Interfaces\**" />
     <None Remove="Models\**" />
   </ItemGroup>
 
@@ -40,6 +36,7 @@
     <ProjectReference Include="..\WebShop.DAL\WebShop.DAL.csproj" />
     <ProjectReference Include="..\WebShop.Domain\WebShop.Domain.csproj" />
     <ProjectReference Include="..\WebShop.Interfaces\WebShop.Interfaces.csproj" />
+    <ProjectReference Include="..\WebShop.Services\WebShop.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

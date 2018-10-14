@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using WebShop.DAL;
+using WebShop.Interfaces;
+using WebShop.Services.InMemory;
+using WebShop.Services.Sql;
 
 namespace WebShop.ServicesHosting
 {
@@ -21,9 +20,16 @@ namespace WebShop.ServicesHosting
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //внедрение зависимостей
+            services.AddSingleton<IEmployeesData, InMemoryEmployeeData>();
+            services.AddScoped<IProductData, SqlProductData>();
+            services.AddScoped<IOrderService, SqlOrderService>();
+
+            //EF
+            services.AddDbContext<WebShopContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
