@@ -59,9 +59,9 @@ namespace WebShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                var orderResult = _orderService.CreateOrder(model, _cartService.TransformCart(), User.Identity.Name);
-                _cartService.RemoveAll();
-                return RedirectToAction("OrderConfirmated", new { id = orderResult.Id });
+                //var orderResult = _orderService.CreateOrder(model, User.Identity.Name);
+                //_cartService.RemoveAll();
+                //return RedirectToAction("OrderConfirmated", new { id = orderResult.Id });
 
             }
             var detailsModel = new DetailsViewModel()

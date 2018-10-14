@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using WebShop.Domain.Dto.Product;
-using WebShop.Domain.Entities;
 using WebShop.Domain.Filters;
 using WebShop.Interfaces;
 

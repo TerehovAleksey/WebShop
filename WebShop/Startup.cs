@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using WebShop.Clients.Services.Employees;
+using WebShop.Clients.Services.Orders;
 using WebShop.Clients.Services.Products;
 using WebShop.DAL;
 using WebShop.Domain.Entities;
@@ -29,13 +30,14 @@ namespace WebShop
         {
             //внедрение зависимостей
             services.AddTransient<IEmployeesData, EmployeesClient>();
-            services.AddScoped<IProductData, ProductsClient>();
-            services.AddScoped<IOrderService, SqlOrderService>();
+            services.AddTransient<IProductData, ProductsClient>();
+            services.AddTransient<IOrderService, OrdersClient>();
 
             //EF
-            services.AddDbContext<WebShopContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); 
+            services.AddDbContext<WebShopContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()//Identity
+            //Identity
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<WebShopContext>()
                 .AddDefaultTokenProviders();
 
