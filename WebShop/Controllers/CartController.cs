@@ -2,6 +2,8 @@
 using WebShop.Interfaces;
 using WebShop.Domain.Models.Cart;
 using WebShop.Domain.Models.Order;
+using WebShop.Domain.Dto.Order;
+using System.Collections.Generic;
 
 namespace WebShop.Controllers
 {
@@ -59,7 +61,24 @@ namespace WebShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                var orderResult = _orderService.CreateOrder(model, _cartService.TransformCart(), User.Identity.Name);
+                var cart = _cartService.TransformCart();
+                var items = new List<OrderItemDto>();
+                foreach (var item in cart.Items)
+                {
+                    items.Add(new OrderItemDto()
+                    {
+                        Id = item.Key.Id,
+                        Price = item.Key.Price,
+                        Quantity = item.Value
+                    });
+                }
+
+                CreateOrderModel order = new CreateOrderModel()
+                {
+                    OrderViewModel = model,
+                    OrderItems = items
+                };
+                var orderResult = _orderService.CreateOrder(order, User.Identity.Name);
                 _cartService.RemoveAll();
                 return RedirectToAction("OrderConfirmated", new { id = orderResult.Id });
 
