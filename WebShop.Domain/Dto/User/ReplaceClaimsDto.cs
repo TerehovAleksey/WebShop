@@ -5,7 +5,7 @@ namespace WebShop.Domain.Dto.User
 {
     public class ReplaceClaimsDto
     {
-        public IDentityRole User { get; set; }
+        public ApplicationUser User { get; set; }
         public Claim Claim { get; set; }
         public Claim NewClaim { get; set; }
     }

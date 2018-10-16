@@ -1,8 +1,7 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using WebShop.DAL;
 
 namespace WebShop.ServicesHosting.Controllers
@@ -19,59 +18,69 @@ namespace WebShop.ServicesHosting.Controllers
             _rolesStore = new RoleStore<IdentityRole>(context);
         }
 
-        public Task<IdentityResult> CreateAsync(IdentityRole role, CancellationToken cancellationToken)
+        [HttpPost]
+        public async Task<IdentityResult> CreateAsync([FromBody]IdentityRole role)
         {
-            throw new System.NotImplementedException();
+            return await _rolesStore.CreateAsync(role);
         }
 
-        public Task<IdentityResult> DeleteAsync(IdentityRole role, CancellationToken cancellationToken)
+        [HttpPost("delete")]
+        public async Task<IdentityResult> DeleteAsync([FromBody]IdentityRole role)
         {
-            throw new System.NotImplementedException();
+            return await _rolesStore.DeleteAsync(role);
         }
 
         public void Dispose()
         {
-            throw new System.NotImplementedException();
+
         }
 
-        public Task<IdentityRole> FindByIdAsync(string roleId, CancellationToken cancellationToken)
+        [HttpGet("findById/{roleId}")]
+        public async Task<IdentityRole> FindByIdAsync(string roleId)
         {
-            throw new System.NotImplementedException();
+            return await _rolesStore.FindByIdAsync(roleId);
         }
 
-        public Task<IdentityRole> FindByNameAsync(string normalizedRoleName, CancellationToken cancellationToken)
+        [HttpGet("findByName/{normalizedRoleName}")]
+        public async Task<IdentityRole> FindByNameAsync(string normalizedRoleName)
         {
-            throw new System.NotImplementedException();
+            return await _rolesStore.FindByNameAsync(normalizedRoleName);
         }
 
-        public Task<string> GetNormalizedRoleNameAsync(IdentityRole role, CancellationToken cancellationToken)
+        [HttpPost("getNormalizedRoleName")]
+        public async Task<string> GetNormalizedRoleNameAsync([FromBody]IdentityRole role)
         {
-            throw new System.NotImplementedException();
+            return await _rolesStore.GetNormalizedRoleNameAsync(role);
         }
 
-        public Task<string> GetRoleIdAsync(IdentityRole role, CancellationToken cancellationToken)
+        [HttpPost("getRoleId")]
+        public async Task<string> GetRoleIdAsync([FromBody]IdentityRole role)
         {
-            throw new System.NotImplementedException();
+            return await _rolesStore.GetRoleIdAsync(role);
         }
 
-        public Task<string> GetRoleNameAsync(IdentityRole role, CancellationToken cancellationToken)
+        [HttpPost("getRoleName")]
+        public async Task<string> GetRoleNameAsync([FromBody]IdentityRole role)
         {
-            throw new System.NotImplementedException();
+            return await _rolesStore.GetRoleNameAsync(role);
         }
 
-        public Task SetNormalizedRoleNameAsync(IdentityRole role, string normalizedName, CancellationToken cancellationToken)
+        [HttpPost("setNormalizedRoleName/{normalizedName}")]
+        public async Task SetNormalizedRoleNameAsync([FromBody]IdentityRole role, string normalizedName)
         {
-            throw new System.NotImplementedException();
+            await _rolesStore.SetNormalizedRoleNameAsync(role, normalizedName);
         }
 
-        public Task SetRoleNameAsync(IdentityRole role, string roleName, CancellationToken cancellationToken)
+        [HttpPost("setRoleName/{roleName}")]
+        public async Task SetRoleNameAsync([FromBody]IdentityRole role, string roleName)
         {
-            throw new System.NotImplementedException();
+            await _rolesStore.SetRoleNameAsync(role, roleName);
         }
 
-        public Task<IdentityResult> UpdateAsync(IdentityRole role, CancellationToken cancellationToken)
+        [HttpPut]
+        public async Task<IdentityResult> UpdateAsync([FromBody]IdentityRole role)
         {
-            throw new System.NotImplementedException();
+            return await _rolesStore.UpdateAsync(role);
         }
     }
 }

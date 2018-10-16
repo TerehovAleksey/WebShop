@@ -13,9 +13,7 @@ using WebShop.Clients.Services.Users;
 using WebShop.DAL;
 using WebShop.Domain.Entities;
 using WebShop.Interfaces;
-using WebShop.Interfaces.Api;
 using WebShop.Services;
-using WebShop.Services.Sql;
 
 namespace WebShop
 {
@@ -35,25 +33,26 @@ namespace WebShop
             services.AddTransient<IProductData, ProductsClient>();
             services.AddTransient<IOrderService, OrdersClient>();
 
-            services.AddTransient<IUserRoleStore<IDentityRole>, UsersClient>();
-            services.AddTransient<IUserClaimStore<IDentityRole>, UsersClient>();
-            services.AddTransient<IUserPasswordStore<IDentityRole>, UsersClient>();
-            services.AddTransient<IUserTwoFactorStore<IDentityRole>, UsersClient>();
-            services.AddTransient<IUserEmailStore<IDentityRole>, UsersClient>();
-            services.AddTransient<IUserPhoneNumberStore<IDentityRole>, UsersClient>();
-            services.AddTransient<IUserLockoutStore<IDentityRole>, UsersClient>();
-            services.AddTransient<IUserLoginStore<IDentityRole>, UsersClient>();
+                               //корзина
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<ICartService, CoocieCartService>();
+
+            services.AddTransient<IUserRoleStore<ApplicationUser>, UsersClient>();
+            services.AddTransient<IUserClaimStore<ApplicationUser>, UsersClient>();
+            services.AddTransient<IUserPasswordStore<ApplicationUser>, UsersClient>();
+            services.AddTransient<IUserTwoFactorStore<ApplicationUser>, UsersClient>();
+            services.AddTransient<IUserEmailStore<ApplicationUser>, UsersClient>();
+            services.AddTransient<IUserPhoneNumberStore<ApplicationUser>, UsersClient>();
+            services.AddTransient<IUserLockoutStore<ApplicationUser>, UsersClient>();
+            services.AddTransient<IUserLoginStore<ApplicationUser>, UsersClient>();
+            services.AddTransient<IRoleStore<IdentityRole>, RolesClient>();
 
             //EF
             services.AddDbContext<WebShopContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             //Identity
-            services.AddIdentity<IDentityRole, IdentityRole>()
-                .AddEntityFrameworkStores<WebShopContext>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddDefaultTokenProviders();
-
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();//корзина
-            services.AddScoped<ICartService, CoocieCartService>();
 
             //конфигурация идентификации
             services.Configure<IdentityOptions>(o =>

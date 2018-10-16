@@ -46,21 +46,21 @@ namespace WebShop
                         var role = new IdentityRole(Constants.Roles.Administrator);
                         var result = roleManager.CreateAsync(role).Result;
                     }
-                    var userStore = new UserStore<IDentityRole>(context);
-                    var userManager = new UserManager<IDentityRole>
+                    var userStore = new UserStore<ApplicationUser>(context);
+                    var userManager = new UserManager<ApplicationUser>
                         (userStore, 
                         new OptionsManager<IdentityOptions>
                         (new OptionsFactory<IdentityOptions>(new IConfigureOptions<IdentityOptions>[] { }, new IPostConfigureOptions<IdentityOptions>[] { })),
-                        new PasswordHasher<IDentityRole>(), 
-                        new IUserValidator<IDentityRole>[] { },
-                        new IPasswordValidator<IDentityRole>[] { },
+                        new PasswordHasher<ApplicationUser>(), 
+                        new IUserValidator<ApplicationUser>[] { },
+                        new IPasswordValidator<ApplicationUser>[] { },
                         new UpperInvariantLookupNormalizer(),
                         new IdentityErrorDescriber(),
                         null, null
                         );
                     if (userStore.FindByEmailAsync("admin@mail.com", CancellationToken.None).Result == null)
                     {
-                        var user = new IDentityRole() { UserName = "Admin", Email = "admin@mail.com" };
+                        var user = new ApplicationUser() { UserName = "Admin", Email = "admin@mail.com" };
                         var result = userManager.CreateAsync(user).Result;
                         if (result.Succeeded)
                         {

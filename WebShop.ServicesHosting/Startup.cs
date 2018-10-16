@@ -33,7 +33,7 @@ namespace WebShop.ServicesHosting
             services.AddDbContext<WebShopContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             //Identity
-            services.AddIdentity<IDentityRole, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<WebShopContext>()
                 .AddDefaultTokenProviders();
 

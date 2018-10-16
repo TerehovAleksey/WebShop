@@ -13,10 +13,10 @@ namespace WebShop.Controllers
     [Authorize]
     public class UsersController : Controller
     {
-        private readonly UserManager<IDentityRole> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        public UsersController(UserManager<IDentityRole> userManager, RoleManager<IdentityRole> roleManager)
+        public UsersController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -31,7 +31,7 @@ namespace WebShop.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
-            IDentityRole user = await _userManager.FindByIdAsync(id);
+            ApplicationUser user = await _userManager.FindByIdAsync(id);
             if (user == null)
             {
                 return NotFound();
@@ -57,7 +57,7 @@ namespace WebShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                IDentityRole user = await _userManager.FindByIdAsync(model.Id);
+                ApplicationUser user = await _userManager.FindByIdAsync(model.Id);
                 if (user != null)
                 {
                     user.Email = model.Email;
@@ -93,7 +93,7 @@ namespace WebShop.Controllers
 
         public async Task<IActionResult> Delete(string id)
         {
-            IDentityRole user = await _userManager.FindByIdAsync(id);
+            ApplicationUser user = await _userManager.FindByIdAsync(id);
             if (user != null)
             {
                 await _userManager.DeleteAsync(user);

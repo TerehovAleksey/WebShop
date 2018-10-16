@@ -4,7 +4,7 @@ namespace WebShop.Domain.Dto.User
 {
     public class PasswordHashDto
     {
-        public IDentityRole User { get; set; }
+        public ApplicationUser User { get; set; }
         public string Hash { get; set; }
     }
 }

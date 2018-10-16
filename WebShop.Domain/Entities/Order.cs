@@ -6,7 +6,7 @@ namespace WebShop.Domain.Entities
 {
     public class Order : NamedEntity
     {
-        public virtual IDentityRole User { get; set; }
+        public virtual ApplicationUser User { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
         public DateTime Date { get; set; }

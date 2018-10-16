@@ -23,27 +23,27 @@ namespace WebShop.Clients.Services.Users
 
         #region IUserRoleStore
 
-        public Task AddToRoleAsync(IDentityRole user, string roleName, CancellationToken cancellationToken)
+        public Task AddToRoleAsync(ApplicationUser user, string roleName, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IList<string>> GetRolesAsync(IDentityRole user, CancellationToken cancellationToken)
+        public Task<IList<string>> GetRolesAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IList<IDentityRole>> GetUsersInRoleAsync(string roleName, CancellationToken cancellationToken)
+        public Task<IList<ApplicationUser>> GetUsersInRoleAsync(string roleName, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> IsInRoleAsync(IDentityRole user, string roleName, CancellationToken cancellationToken)
+        public Task<bool> IsInRoleAsync(ApplicationUser user, string roleName, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task RemoveFromRoleAsync(IDentityRole user, string roleName, CancellationToken cancellationToken)
+        public Task RemoveFromRoleAsync(ApplicationUser user, string roleName, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -52,27 +52,27 @@ namespace WebShop.Clients.Services.Users
 
         #region IUserClaimStore
 
-        public Task AddClaimsAsync(IDentityRole user, IEnumerable<Claim> claims, CancellationToken cancellationToken)
+        public Task AddClaimsAsync(ApplicationUser user, IEnumerable<Claim> claims, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IList<Claim>> GetClaimsAsync(IDentityRole user, CancellationToken cancellationToken)
+        public Task<IList<Claim>> GetClaimsAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IList<IDentityRole>> GetUsersForClaimAsync(Claim claim, CancellationToken cancellationToken)
+        public Task<IList<ApplicationUser>> GetUsersForClaimAsync(Claim claim, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task RemoveClaimsAsync(IDentityRole user, IEnumerable<Claim> claims, CancellationToken cancellationToken)
+        public Task RemoveClaimsAsync(ApplicationUser user, IEnumerable<Claim> claims, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task ReplaceClaimAsync(IDentityRole user, Claim claim, Claim newClaim, CancellationToken cancellationToken)
+        public Task ReplaceClaimAsync(ApplicationUser user, Claim claim, Claim newClaim, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -81,17 +81,17 @@ namespace WebShop.Clients.Services.Users
 
         #region IUserPasswordStore
 
-        public Task SetPasswordHashAsync(IDentityRole user, string passwordHash, CancellationToken cancellationToken)
+        public Task SetPasswordHashAsync(ApplicationUser user, string passwordHash, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<string> GetPasswordHashAsync(IDentityRole user, CancellationToken cancellationToken)
+        public Task<string> GetPasswordHashAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> HasPasswordAsync(IDentityRole user, CancellationToken cancellationToken)
+        public Task<bool> HasPasswordAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -100,12 +100,12 @@ namespace WebShop.Clients.Services.Users
 
         #region IUserTwoFactorStore
 
-        public Task SetTwoFactorEnabledAsync(IDentityRole user, bool enabled, CancellationToken cancellationToken)
+        public Task SetTwoFactorEnabledAsync(ApplicationUser user, bool enabled, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> GetTwoFactorEnabledAsync(IDentityRole user, CancellationToken cancellationToken)
+        public Task<bool> GetTwoFactorEnabledAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -114,37 +114,37 @@ namespace WebShop.Clients.Services.Users
 
         #region IUserEmailStore
 
-        public Task SetEmailAsync(IDentityRole user, string email, CancellationToken cancellationToken)
+        public Task SetEmailAsync(ApplicationUser user, string email, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<string> GetEmailAsync(IDentityRole user, CancellationToken cancellationToken)
+        public Task<string> GetEmailAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> GetEmailConfirmedAsync(IDentityRole user, CancellationToken cancellationToken)
+        public Task<bool> GetEmailConfirmedAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task SetEmailConfirmedAsync(IDentityRole user, bool confirmed, CancellationToken cancellationToken)
+        public Task SetEmailConfirmedAsync(ApplicationUser user, bool confirmed, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IDentityRole> FindByEmailAsync(string normalizedEmail, CancellationToken cancellationToken)
+        public Task<ApplicationUser> FindByEmailAsync(string normalizedEmail, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<string> GetNormalizedEmailAsync(IDentityRole user, CancellationToken cancellationToken)
+        public Task<string> GetNormalizedEmailAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task SetNormalizedEmailAsync(IDentityRole user, string normalizedEmail, CancellationToken cancellationToken)
+        public Task SetNormalizedEmailAsync(ApplicationUser user, string normalizedEmail, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -153,22 +153,22 @@ namespace WebShop.Clients.Services.Users
 
         #region IUserPhoneNumberStore
 
-        public Task SetPhoneNumberAsync(IDentityRole user, string phoneNumber, CancellationToken cancellationToken)
+        public Task SetPhoneNumberAsync(ApplicationUser user, string phoneNumber, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<string> GetPhoneNumberAsync(IDentityRole user, CancellationToken cancellationToken)
+        public Task<string> GetPhoneNumberAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> GetPhoneNumberConfirmedAsync(IDentityRole user, CancellationToken cancellationToken)
+        public Task<bool> GetPhoneNumberConfirmedAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task SetPhoneNumberConfirmedAsync(IDentityRole user, bool confirmed, CancellationToken cancellationToken)
+        public Task SetPhoneNumberConfirmedAsync(ApplicationUser user, bool confirmed, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -177,37 +177,37 @@ namespace WebShop.Clients.Services.Users
 
         #region IUserLockoutStore
 
-        public Task<DateTimeOffset?> GetLockoutEndDateAsync(IDentityRole user, CancellationToken cancellationToken)
+        public Task<DateTimeOffset?> GetLockoutEndDateAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task SetLockoutEndDateAsync(IDentityRole user, DateTimeOffset? lockoutEnd, CancellationToken cancellationToken)
+        public Task SetLockoutEndDateAsync(ApplicationUser user, DateTimeOffset? lockoutEnd, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> IncrementAccessFailedCountAsync(IDentityRole user, CancellationToken cancellationToken)
+        public Task<int> IncrementAccessFailedCountAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task ResetAccessFailedCountAsync(IDentityRole user, CancellationToken cancellationToken)
+        public Task ResetAccessFailedCountAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> GetAccessFailedCountAsync(IDentityRole user, CancellationToken cancellationToken)
+        public Task<int> GetAccessFailedCountAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> GetLockoutEnabledAsync(IDentityRole user, CancellationToken cancellationToken)
+        public Task<bool> GetLockoutEnabledAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task SetLockoutEnabledAsync(IDentityRole user, bool enabled, CancellationToken cancellationToken)
+        public Task SetLockoutEnabledAsync(ApplicationUser user, bool enabled, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -216,22 +216,22 @@ namespace WebShop.Clients.Services.Users
 
         #region IUserLoginStore
 
-        public Task AddLoginAsync(IDentityRole user, UserLoginInfo login, CancellationToken cancellationToken)
+        public Task AddLoginAsync(ApplicationUser user, UserLoginInfo login, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task RemoveLoginAsync(IDentityRole user, string loginProvider, string providerKey, CancellationToken cancellationToken)
+        public Task RemoveLoginAsync(ApplicationUser user, string loginProvider, string providerKey, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IList<UserLoginInfo>> GetLoginsAsync(IDentityRole user, CancellationToken cancellationToken)
+        public Task<IList<UserLoginInfo>> GetLoginsAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IDentityRole> FindByLoginAsync(string loginProvider, string providerKey, CancellationToken cancellationToken)
+        public Task<ApplicationUser> FindByLoginAsync(string loginProvider, string providerKey, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -240,52 +240,52 @@ namespace WebShop.Clients.Services.Users
 
         #region IUserStore
 
-        public Task<string> GetUserIdAsync(IDentityRole user, CancellationToken cancellationToken)
+        public Task<string> GetUserIdAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<string> GetUserNameAsync(IDentityRole user, CancellationToken cancellationToken)
+        public Task<string> GetUserNameAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task SetUserNameAsync(IDentityRole user, string userName, CancellationToken cancellationToken)
+        public Task SetUserNameAsync(ApplicationUser user, string userName, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<string> GetNormalizedUserNameAsync(IDentityRole user, CancellationToken cancellationToken)
+        public Task<string> GetNormalizedUserNameAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task SetNormalizedUserNameAsync(IDentityRole user, string normalizedName, CancellationToken cancellationToken)
+        public Task SetNormalizedUserNameAsync(ApplicationUser user, string normalizedName, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IdentityResult> CreateAsync(IDentityRole user, CancellationToken cancellationToken)
+        public Task<IdentityResult> CreateAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IdentityResult> UpdateAsync(IDentityRole user, CancellationToken cancellationToken)
+        public Task<IdentityResult> UpdateAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IdentityResult> DeleteAsync(IDentityRole user, CancellationToken cancellationToken)
+        public Task<IdentityResult> DeleteAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IDentityRole> FindByIdAsync(string userId, CancellationToken cancellationToken)
+        public Task<ApplicationUser> FindByIdAsync(string userId, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IDentityRole> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
+        public Task<ApplicationUser> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
