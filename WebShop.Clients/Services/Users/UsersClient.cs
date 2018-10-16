@@ -2,11 +2,12 @@
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Security.Claims;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using WebShop.Clients.Base;
+using WebShop.Domain.Dto.User;
 using WebShop.Domain.Entities;
 using WebShop.Interfaces.Api;
 
@@ -18,276 +19,325 @@ namespace WebShop.Clients.Services.Users
 
         public UsersClient(IConfiguration configuration) : base(configuration)
         {
-            ServiceAddress = "api/user";
+            ServiceAddress = "api/users";
         }
 
         #region IUserRoleStore
 
-        public Task AddToRoleAsync(ApplicationUser user, string roleName, CancellationToken cancellationToken)
+        public async Task AddToRoleAsync(ApplicationUser user, string roleName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            
         }
 
-        public Task<IList<string>> GetRolesAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public async Task<IList<string>> GetRolesAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            
         }
 
-        public Task<IList<ApplicationUser>> GetUsersInRoleAsync(string roleName, CancellationToken cancellationToken)
+        public async Task<IList<ApplicationUser>> GetUsersInRoleAsync(string roleName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            
         }
 
-        public Task<bool> IsInRoleAsync(ApplicationUser user, string roleName, CancellationToken cancellationToken)
+        public async Task<bool> IsInRoleAsync(ApplicationUser user, string roleName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            
         }
 
-        public Task RemoveFromRoleAsync(ApplicationUser user, string roleName, CancellationToken cancellationToken)
+        public async Task RemoveFromRoleAsync(ApplicationUser user, string roleName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            
         }
 
         #endregion
 
         #region IUserClaimStore
 
-        public Task AddClaimsAsync(ApplicationUser user, IEnumerable<Claim> claims, CancellationToken cancellationToken)
+        public async Task AddClaimsAsync(ApplicationUser user, IEnumerable<Claim> claims, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            
         }
 
-        public Task<IList<Claim>> GetClaimsAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public async Task<IList<Claim>> GetClaimsAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            
         }
 
-        public Task<IList<ApplicationUser>> GetUsersForClaimAsync(Claim claim, CancellationToken cancellationToken)
+        public async Task<IList<ApplicationUser>> GetUsersForClaimAsync(Claim claim, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+           
         }
 
-        public Task RemoveClaimsAsync(ApplicationUser user, IEnumerable<Claim> claims, CancellationToken cancellationToken)
+        public async Task RemoveClaimsAsync(ApplicationUser user, IEnumerable<Claim> claims, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            
         }
 
-        public Task ReplaceClaimAsync(ApplicationUser user, Claim claim, Claim newClaim, CancellationToken cancellationToken)
+        public async Task ReplaceClaimAsync(ApplicationUser user, Claim claim, Claim newClaim, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+           
         }
 
         #endregion
 
         #region IUserPasswordStore
 
-        public Task SetPasswordHashAsync(ApplicationUser user, string passwordHash, CancellationToken cancellationToken)
+        public async Task SetPasswordHashAsync(ApplicationUser user, string passwordHash, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            
         }
 
-        public Task<string> GetPasswordHashAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public async Task<string> GetPasswordHashAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+           
         }
 
-        public Task<bool> HasPasswordAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public async Task<bool> HasPasswordAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+           
         }
 
         #endregion
 
         #region IUserTwoFactorStore
 
-        public Task SetTwoFactorEnabledAsync(ApplicationUser user, bool enabled, CancellationToken cancellationToken)
+        public async Task SetTwoFactorEnabledAsync(ApplicationUser user, bool enabled, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            
         }
 
-        public Task<bool> GetTwoFactorEnabledAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public async Task<bool> GetTwoFactorEnabledAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            
         }
 
         #endregion
 
         #region IUserEmailStore
 
-        public Task SetEmailAsync(ApplicationUser user, string email, CancellationToken cancellationToken)
+        public async Task SetEmailAsync(ApplicationUser user, string email, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            user.Email = email;
+            var url = $"{ServiceAddress}/setEmail/{email}";
+            await PostAsync(url, user);
         }
 
-        public Task<string> GetEmailAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public async Task<string> GetEmailAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+           
         }
 
-        public Task<bool> GetEmailConfirmedAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public async Task<bool> GetEmailConfirmedAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            
         }
 
-        public Task SetEmailConfirmedAsync(ApplicationUser user, bool confirmed, CancellationToken cancellationToken)
+        public async Task SetEmailConfirmedAsync(ApplicationUser user, bool confirmed, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            
         }
 
-        public Task<ApplicationUser> FindByEmailAsync(string normalizedEmail, CancellationToken cancellationToken)
+        public async Task<ApplicationUser> FindByEmailAsync(string normalizedEmail, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            
         }
 
-        public Task<string> GetNormalizedEmailAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public async Task<string> GetNormalizedEmailAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            
         }
 
-        public Task SetNormalizedEmailAsync(ApplicationUser user, string normalizedEmail, CancellationToken cancellationToken)
+        public async Task SetNormalizedEmailAsync(ApplicationUser user, string normalizedEmail, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            
         }
 
         #endregion
 
         #region IUserPhoneNumberStore
 
-        public Task SetPhoneNumberAsync(ApplicationUser user, string phoneNumber, CancellationToken cancellationToken)
+
+        public async Task SetPhoneNumberAsync(ApplicationUser user, string phoneNumber, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            user.PhoneNumber = phoneNumber;
+            var url = $"{ServiceAddress}/setPhoneNumber/{phoneNumber}";
+            await PostAsync(url, user);
         }
 
-        public Task<string> GetPhoneNumberAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public async Task<string> GetPhoneNumberAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var url = $"{ServiceAddress}/getPhoneNumber";
+            var result = await PostAsync(url, user);
+            return await result.Content.ReadAsStringAsync();
         }
 
-        public Task<bool> GetPhoneNumberConfirmedAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public async Task<bool> GetPhoneNumberConfirmedAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var url = $"{ServiceAddress}/getPhoneNumberConfirmed";
+            var result = await PostAsync(url, user);
+            return await result.Content.ReadAsAsync<bool>();
         }
 
-        public Task SetPhoneNumberConfirmedAsync(ApplicationUser user, bool confirmed, CancellationToken cancellationToken)
+        public async Task SetPhoneNumberConfirmedAsync(ApplicationUser user, bool confirmed, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            user.PhoneNumberConfirmed = confirmed;
+            var url = $"{ServiceAddress}/setPhoneNumberConfirmed/{confirmed}";
+            await PostAsync(url, user);
         }
 
         #endregion
 
         #region IUserLockoutStore
 
-        public Task<DateTimeOffset?> GetLockoutEndDateAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public async Task<DateTimeOffset?> GetLockoutEndDateAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var url = $"{ServiceAddress}/getLockoutEndDate";
+            var result = await PostAsync(url, user);
+            return await result.Content.ReadAsAsync<DateTimeOffset?>();
         }
 
-        public Task SetLockoutEndDateAsync(ApplicationUser user, DateTimeOffset? lockoutEnd, CancellationToken cancellationToken)
+        public async Task SetLockoutEndDateAsync(ApplicationUser user, DateTimeOffset? lockoutEnd, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            user.LockoutEnd = lockoutEnd;
+            var url = $"{ServiceAddress}/setLockoutEndDate";
+            await PostAsync(url, new SetLockoutDto() { User = user, LockoutEnd = lockoutEnd });
         }
 
-        public Task<int> IncrementAccessFailedCountAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public async Task<int> IncrementAccessFailedCountAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var url = $"{ServiceAddress}/incrementAccessFailedCount";
+            var result = await PostAsync(url, user);
+            return await result.Content.ReadAsAsync<int>();
         }
 
-        public Task ResetAccessFailedCountAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public async Task ResetAccessFailedCountAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var url = $"{ServiceAddress}/resetAccessFailedCount";
+            await PostAsync(url, user);
         }
 
-        public Task<int> GetAccessFailedCountAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public async Task<int> GetAccessFailedCountAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var url = $"{ServiceAddress}/getAccessFailedCount";
+            var result = await PostAsync(url, user);
+            return await result.Content.ReadAsAsync<int>();
         }
 
-        public Task<bool> GetLockoutEnabledAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public async Task<bool> GetLockoutEnabledAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var url = $"{ServiceAddress}/getLockoutEnabled";
+            var result = await PostAsync(url, user);
+            return await result.Content.ReadAsAsync<bool>();
         }
 
-        public Task SetLockoutEnabledAsync(ApplicationUser user, bool enabled, CancellationToken cancellationToken)
+        public async Task SetLockoutEnabledAsync(ApplicationUser user, bool enabled, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            user.LockoutEnabled = enabled;
+            var url = $"{ServiceAddress}/setLockoutEnabled/{enabled}";
+            await PostAsync(url, user);
         }
 
         #endregion
 
         #region IUserLoginStore
 
-        public Task AddLoginAsync(ApplicationUser user, UserLoginInfo login, CancellationToken cancellationToken)
+        public async Task AddLoginAsync(ApplicationUser user, UserLoginInfo login, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var url = $"{ServiceAddress}/addLogin";
+            await PostAsync(url, new AddLoginDto() { User = user, UserLoginInfo = login });
         }
 
-        public Task RemoveLoginAsync(ApplicationUser user, string loginProvider, string providerKey, CancellationToken cancellationToken)
+        public async Task RemoveLoginAsync(ApplicationUser user, string loginProvider, string providerKey, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var url = $"{ServiceAddress}/removeLogin/{loginProvider}/{providerKey}";
+            await PostAsync(url, user);
         }
 
-        public Task<IList<UserLoginInfo>> GetLoginsAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public async Task<IList<UserLoginInfo>> GetLoginsAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var url = $"{ServiceAddress}/getLogins";
+            var result = await PostAsync(url, user);
+            return await result.Content.ReadAsAsync<List<UserLoginInfo>>();
         }
 
-        public Task<ApplicationUser> FindByLoginAsync(string loginProvider, string providerKey, CancellationToken cancellationToken)
+        public async Task<ApplicationUser> FindByLoginAsync(string loginProvider, string providerKey, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var url = $"{ServiceAddress}/user/findByLogin/{loginProvider}/{providerKey}";
+            return await GetAsync<ApplicationUser>(url);
         }
 
         #endregion
 
         #region IUserStore
 
-        public Task<string> GetUserIdAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public async Task<string> GetUserIdAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var url = $"{ServiceAddress}/getUserId";
+            var result = await PostAsync(url, user);
+            return await result.Content.ReadAsAsync<string>();
         }
 
-        public Task<string> GetUserNameAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public async Task<string> GetUserNameAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var url = $"{ServiceAddress}/getUserName";
+            var result = await PostAsync(url, user);
+            return await result.Content.ReadAsAsync<string>();
         }
 
-        public Task SetUserNameAsync(ApplicationUser user, string userName, CancellationToken cancellationToken)
+        public async Task SetUserNameAsync(ApplicationUser user, string userName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            user.UserName = userName;
+            var url = $"{ServiceAddress}/setUserName/{userName}";
+            await PostAsync(url, user);
         }
 
-        public Task<string> GetNormalizedUserNameAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public async Task<string> GetNormalizedUserNameAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var url = $"{ServiceAddress}/getNormalizedUserName";
+            var result = await PostAsync(url, user);
+            return await result.Content.ReadAsAsync<string>();
         }
 
-        public Task SetNormalizedUserNameAsync(ApplicationUser user, string normalizedName, CancellationToken cancellationToken)
+        public async Task SetNormalizedUserNameAsync(ApplicationUser user, string normalizedName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            user.NormalizedUserName = normalizedName;
+            var url = $"{ServiceAddress}/setNormalizedUserName/{normalizedName}";
+            await PostAsync(url, user);
         }
 
-        public Task<IdentityResult> CreateAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public async Task<IdentityResult> CreateAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var url = $"{ServiceAddress}/user";
+            var result = await PostAsync(url, user);
+            return await result.Content.ReadAsAsync<IdentityResult>();
         }
 
-        public Task<IdentityResult> UpdateAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public async Task<IdentityResult> UpdateAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var url = $"{ServiceAddress}/user";
+            var result = await PutAsync(url, user);
+            return await result.Content.ReadAsAsync<IdentityResult>();
         }
 
-        public Task<IdentityResult> DeleteAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public async Task<IdentityResult> DeleteAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var url = $"{ServiceAddress}/user/delete";
+            var result = await PostAsync(url, user);
+            return await result.Content.ReadAsAsync<IdentityResult>();
         }
 
-        public Task<ApplicationUser> FindByIdAsync(string userId, CancellationToken cancellationToken)
+        public async Task<ApplicationUser> FindByIdAsync(string userId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var url = $"{ServiceAddress}/user/find/{userId}";
+            var result = await GetAsync<ApplicationUser>(url);
+            return result;
         }
 
-        public Task<ApplicationUser> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
+        public async Task<ApplicationUser> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var url = $"{ServiceAddress}/user/findByName/{normalizedUserName}";
+            var result = await GetAsync<ApplicationUser>(url);
+            return result;
         }
 
         public void Dispose()
