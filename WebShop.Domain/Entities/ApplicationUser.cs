@@ -3,7 +3,7 @@ using System;
 
 namespace WebShop.Domain.Entities
 {
-    public class ApplicationUser : IdentityUser
+    public class IDentityRole : IdentityUser
     {
        
     }

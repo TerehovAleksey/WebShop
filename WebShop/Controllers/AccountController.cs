@@ -9,10 +9,10 @@ namespace WebShop.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<IDentityRole> _userManager;
+        private readonly SignInManager<IDentityRole> _signInManager;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public AccountController(UserManager<IDentityRole> userManager, SignInManager<IDentityRole> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -55,7 +55,7 @@ namespace WebShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.UserName+"@test.com" };
+                var user = new IDentityRole { UserName = model.UserName, Email = model.UserName+"@test.com" };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

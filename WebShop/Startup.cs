@@ -9,9 +9,11 @@ using System;
 using WebShop.Clients.Services.Employees;
 using WebShop.Clients.Services.Orders;
 using WebShop.Clients.Services.Products;
+using WebShop.Clients.Services.Users;
 using WebShop.DAL;
 using WebShop.Domain.Entities;
 using WebShop.Interfaces;
+using WebShop.Interfaces.Api;
 using WebShop.Services;
 using WebShop.Services.Sql;
 
@@ -33,11 +35,20 @@ namespace WebShop
             services.AddTransient<IProductData, ProductsClient>();
             services.AddTransient<IOrderService, OrdersClient>();
 
+            services.AddTransient<IUserRoleStore<IDentityRole>, UsersClient>();
+            services.AddTransient<IUserClaimStore<IDentityRole>, UsersClient>();
+            services.AddTransient<IUserPasswordStore<IDentityRole>, UsersClient>();
+            services.AddTransient<IUserTwoFactorStore<IDentityRole>, UsersClient>();
+            services.AddTransient<IUserEmailStore<IDentityRole>, UsersClient>();
+            services.AddTransient<IUserPhoneNumberStore<IDentityRole>, UsersClient>();
+            services.AddTransient<IUserLockoutStore<IDentityRole>, UsersClient>();
+            services.AddTransient<IUserLoginStore<IDentityRole>, UsersClient>();
+
             //EF
             services.AddDbContext<WebShopContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             //Identity
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<IDentityRole, IdentityRole>()
                 .AddEntityFrameworkStores<WebShopContext>()
                 .AddDefaultTokenProviders();
 

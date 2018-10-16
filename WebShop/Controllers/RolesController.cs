@@ -11,9 +11,9 @@ namespace WebShop.Controllers
     public class RolesController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<IDentityRole> _userManager;
 
-        public RolesController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager)
+        public RolesController(RoleManager<IdentityRole> roleManager, UserManager<IDentityRole> userManager)
         {
             _roleManager = roleManager;
             _userManager = userManager;

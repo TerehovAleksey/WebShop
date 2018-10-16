@@ -5,7 +5,7 @@ using WebShop.Domain.Entities.Base;
 
 namespace WebShop.DAL
 {
-    public class WebShopContext : IdentityDbContext<ApplicationUser>
+    public class WebShopContext : IdentityDbContext<IDentityRole>
     {
         public WebShopContext(DbContextOptions options):base(options)
         {

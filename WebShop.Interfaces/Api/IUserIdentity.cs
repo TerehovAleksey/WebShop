@@ -3,9 +3,9 @@ using WebShop.Domain.Entities;
 
 namespace WebShop.Interfaces.Api
 {
-    public interface IUserIdentity : IUserRoleStore<ApplicationUser>, IUserClaimStore<ApplicationUser>,
-        IUserPasswordStore<ApplicationUser>, IUserTwoFactorStore<ApplicationUser>, IUserEmailStore<ApplicationUser>,
-        IUserPhoneNumberStore<ApplicationUser>, IUserLockoutStore<ApplicationUser>, IUserLoginStore<ApplicationUser>
+    public interface IUserIdentity : IUserRoleStore<IDentityRole>, IUserClaimStore<IDentityRole>,
+        IUserPasswordStore<IDentityRole>, IUserTwoFactorStore<IDentityRole>, IUserEmailStore<IDentityRole>,
+        IUserPhoneNumberStore<IDentityRole>, IUserLockoutStore<IDentityRole>, IUserLoginStore<IDentityRole>
     {
 
     }

@@ -16,9 +16,9 @@ namespace WebShop.Services.Sql
     public class SqlOrderService : IOrderService
     {
         private readonly WebShopContext _context;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<IDentityRole> _userManager;
 
-        public SqlOrderService(WebShopContext context, UserManager<ApplicationUser> userManager)
+        public SqlOrderService(WebShopContext context, UserManager<IDentityRole> userManager)
         {
             _context = context;
             _userManager = userManager;
@@ -65,7 +65,7 @@ namespace WebShop.Services.Sql
 
         public OrderDto CreateOrder(CreateOrderModel orderModel, string userName)
         {
-            ApplicationUser user = null;
+            IDentityRole user = null;
 
             if (!string.IsNullOrEmpty(userName))
             {

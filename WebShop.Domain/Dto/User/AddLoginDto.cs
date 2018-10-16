@@ -5,7 +5,7 @@ namespace WebShop.Domain.Dto.User
 {
     public class AddLoginDto
     {
-        public ApplicationUser User { get; set; }
+        public IDentityRole User { get; set; }
         public UserLoginInfo UserLoginInfo { get; set; }
     }
 }

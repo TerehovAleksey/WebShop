@@ -6,7 +6,7 @@ namespace WebShop.Domain.Dto.User
 {
     public class AddClaimsDto
     {
-        public ApplicationUser User { get; set; }
+        public IDentityRole User { get; set; }
         public IEnumerable<Claim> Claims { get; set; }
     }
 }
