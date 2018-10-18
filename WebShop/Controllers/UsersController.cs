@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using WebShop.Domain.Entities;
 using WebShop.Domain.Models.Users;
 
 namespace WebShop.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class UsersController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -88,7 +85,7 @@ namespace WebShop.Controllers
                     }
                 }
             }
-                return View(model);
+            return View(model);
         }
 
         public async Task<IActionResult> Delete(string id)

@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -10,9 +9,9 @@ using WebShop.Clients.Services.Employees;
 using WebShop.Clients.Services.Orders;
 using WebShop.Clients.Services.Products;
 using WebShop.Clients.Services.Users;
-using WebShop.DAL;
 using WebShop.Domain.Entities;
 using WebShop.Interfaces;
+using WebShop.Interfaces.Api;
 using WebShop.Services;
 
 namespace WebShop
@@ -28,15 +27,19 @@ namespace WebShop
 
         public void ConfigureServices(IServiceCollection services)
         {
+            #region зависимости
+
             //внедрение зависимостей
             services.AddTransient<IEmployeesData, EmployeesClient>();
             services.AddTransient<IProductData, ProductsClient>();
             services.AddTransient<IOrderService, OrdersClient>();
 
-                               //корзина
+            //корзина
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<ICartService, CoocieCartService>();
 
+            services.AddTransient<IUserIdentity, UsersClient>();
+            services.AddTransient<IUserStore<ApplicationUser>, UsersClient>();
             services.AddTransient<IUserRoleStore<ApplicationUser>, UsersClient>();
             services.AddTransient<IUserClaimStore<ApplicationUser>, UsersClient>();
             services.AddTransient<IUserPasswordStore<ApplicationUser>, UsersClient>();
@@ -47,8 +50,7 @@ namespace WebShop
             services.AddTransient<IUserLoginStore<ApplicationUser>, UsersClient>();
             services.AddTransient<IRoleStore<IdentityRole>, RolesClient>();
 
-            //EF
-            services.AddDbContext<WebShopContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            #endregion
 
             //Identity
             services.AddIdentity<ApplicationUser, IdentityRole>()
