@@ -2,18 +2,17 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using WebShop.Clients.Services.Employees;
 using WebShop.Clients.Services.Orders;
 using WebShop.Clients.Services.Products;
-using WebShop.DAL;
+using WebShop.Clients.Services.Users;
 using WebShop.Domain.Entities;
 using WebShop.Interfaces;
+using WebShop.Interfaces.Api;
 using WebShop.Services;
-using WebShop.Services.Sql;
 
 namespace WebShop
 {
@@ -28,21 +27,34 @@ namespace WebShop
 
         public void ConfigureServices(IServiceCollection services)
         {
+            #region зависимости
+
             //внедрение зависимостей
             services.AddTransient<IEmployeesData, EmployeesClient>();
             services.AddTransient<IProductData, ProductsClient>();
             services.AddTransient<IOrderService, OrdersClient>();
 
-            //EF
-            services.AddDbContext<WebShopContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //корзина
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<ICartService, CoocieCartService>();
+
+            services.AddTransient<IUserIdentity, UsersClient>();
+            services.AddTransient<IUserStore<ApplicationUser>, UsersClient>();
+            services.AddTransient<IUserRoleStore<ApplicationUser>, UsersClient>();
+            services.AddTransient<IUserClaimStore<ApplicationUser>, UsersClient>();
+            services.AddTransient<IUserPasswordStore<ApplicationUser>, UsersClient>();
+            services.AddTransient<IUserTwoFactorStore<ApplicationUser>, UsersClient>();
+            services.AddTransient<IUserEmailStore<ApplicationUser>, UsersClient>();
+            services.AddTransient<IUserPhoneNumberStore<ApplicationUser>, UsersClient>();
+            services.AddTransient<IUserLockoutStore<ApplicationUser>, UsersClient>();
+            services.AddTransient<IUserLoginStore<ApplicationUser>, UsersClient>();
+            services.AddTransient<IRoleStore<IdentityRole>, RolesClient>();
+
+            #endregion
 
             //Identity
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<WebShopContext>()
                 .AddDefaultTokenProviders();
-
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();//корзина
-            services.AddScoped<ICartService, CoocieCartService>();
 
             //конфигурация идентификации
             services.Configure<IdentityOptions>(o =>
