@@ -53,6 +53,20 @@ namespace WebShop.Controllers
             return View();
         }
 
+        public IActionResult Error()
+        {
+            return View();
+        }
+
+        public IActionResult ErrorStatus(string id)
+        {
+            if (id == "404")
+            {
+                return RedirectToAction("PageNotFound");
+            }
+            return Content($"Статусный код ошибки: {id}");
+        }
+
         public IActionResult PageNotFound()
         {
             return View();

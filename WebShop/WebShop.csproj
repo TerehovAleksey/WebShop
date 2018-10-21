@@ -33,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\WebShop.Logger\WebShop.Logger.csproj" />
     <ProjectReference Include="..\WebShop.Clients\WebShop.Clients.csproj" />
     <ProjectReference Include="..\WebShop.DAL\WebShop.DAL.csproj" />
     <ProjectReference Include="..\WebShop.Domain\WebShop.Domain.csproj" />

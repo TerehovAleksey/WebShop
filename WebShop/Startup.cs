@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using WebShop.Clients.Services.Employees;
 using WebShop.Clients.Services.Orders;
@@ -12,7 +13,9 @@ using WebShop.Clients.Services.Users;
 using WebShop.Domain.Entities;
 using WebShop.Interfaces;
 using WebShop.Interfaces.Api;
+using WebShop.Logger;
 using WebShop.Services;
+using WebShop.Services.Middleware;
 
 namespace WebShop
 {
@@ -86,16 +89,26 @@ namespace WebShop
             services.AddMvc();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddLog4Net();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
             }
 
             app.UseStaticFiles();
 
             app.UseAuthentication();
+
+            app.UseStatusCodePagesWithRedirects("~/Home/ErrorStatus/{0}");
+
+            app.UseMiddleware(typeof(ErrorHandlingMiddleware));
 
             app.UseMvc(routes =>
             {
