@@ -39,7 +39,8 @@ namespace WebShop
 
             //корзина
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<ICartService, CoocieCartService>();
+            services.AddScoped<ICartService, CartService>();
+            services.AddScoped<ICartStore, CookieCartStore>();
 
             services.AddTransient<IUserIdentity, UsersClient>();
             services.AddTransient<IUserStore<ApplicationUser>, UsersClient>();

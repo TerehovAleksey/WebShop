@@ -30,13 +30,13 @@ namespace WebShop.Controllers
 
         public IActionResult DecrementFromCart(int id)
         {
-            _cartService.DecrementFromCard(id);
+            _cartService.DecrementFromCart(id);
             return RedirectToAction("Details");
         }
 
         public IActionResult RemoveFromCart(int id)
         {
-            _cartService.RemoveFromCard(id);
+            _cartService.RemoveFromCart(id);
             return RedirectToAction("Details");
         }
 
@@ -48,7 +48,7 @@ namespace WebShop.Controllers
 
         public IActionResult AddToCart(int id, string returnUrl)
         {
-            _cartService.AddToCard(id);
+            _cartService.AddToCart(id);
             if (Url.IsLocalUrl(returnUrl))
             {
                 return Redirect(returnUrl);

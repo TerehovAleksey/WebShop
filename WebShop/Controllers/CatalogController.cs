@@ -1,8 +1,7 @@
-﻿using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using WebShop.Domain.Entities;
-using WebShop.Interfaces;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using WebShop.Domain.Models.Products;
+using WebShop.Interfaces;
 
 namespace WebShop.Controllers
 {
