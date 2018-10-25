@@ -15,10 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\WebShop.Logger\WebShop.Logger.csproj" />
     <ProjectReference Include="..\WebShop.DAL\WebShop.DAL.csproj" />
     <ProjectReference Include="..\WebShop.Interfaces\WebShop.Interfaces.csproj" />
     <ProjectReference Include="..\WebShop.Services\WebShop.Services.csproj" />
+    <ProjectReference Include="..\WebShopLogger\WebShop.Logger.csproj" />
   </ItemGroup>
 
   <ItemGroup>
