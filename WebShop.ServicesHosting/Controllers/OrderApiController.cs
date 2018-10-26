@@ -1,12 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using WebShop.Domain.Dto.Order;
-using WebShop.Domain.Models.Cart;
-using WebShop.Domain.Models.Order;
 using WebShop.Interfaces;
 
 namespace WebShop.ServicesHosting.Controllers

@@ -4,13 +4,13 @@ namespace WebShop.Interfaces
 {
     public interface ICartService
     {
-        void DecrementFromCard(int id);
+        void DecrementFromCart(int id);
 
-        void RemoveFromCard(int id);
+        void RemoveFromCart(int id);
 
         void RemoveAll();
 
-        void AddToCard(int id);
+        void AddToCart(int id);
 
         CartViewModel TransformCart();
     }
