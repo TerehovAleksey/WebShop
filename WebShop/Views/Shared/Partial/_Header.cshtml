@@ -33,7 +33,7 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="logo pull-left">
-                        <a asp-controller="Home" asp-action="Index"><img src="~/images/home/logo.png" alt="" /></a>
+                        <a asp-controller="Home" asp-action="Index" is-active-route><img src="~/images/home/logo.png" alt="" /></a>
                     </div>
                     <div class="btn-group pull-right">
                         <div class="btn-group">
@@ -62,10 +62,10 @@
                 <div class="col-sm-5">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a asp-controller="Employee" asp-action="Index">Сотрудники</a></li>
-                            <li><a asp-controller="Users" asp-action="Index"><i class="fa fa-user"></i> Пользователи</a></li>
-                            <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-                            <li><a asp-controller="Home" asp-action="CheckOut"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+                            <li><a asp-controller="Employee" asp-action="Index" is-active-route>Сотрудники</a></li>
+                            <li><a asp-controller="Users" asp-action="Index" is-active-route><i class="fa fa-user"></i> Пользователи</a></li>
+                            <li><a href="#"><i class="fa fa-star" is-active-route></i> Wishlist</a></li>
+                            <li><a asp-controller="Home" asp-action="CheckOut" is-active-route><i class="fa fa-crosshairs"></i> Checkout</a></li>
                         </ul>
                     </div>
                 </div>
@@ -98,26 +98,26 @@
                     </div>
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
-                            <li><a asp-controller="Home" asp-action="Index" class="active">Home</a></li>
+                            <li><a asp-controller="Home" asp-action="Index" is-active-route>Home</a></li>
                             <li class="dropdown">
                                 <a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
-                                    <li><a asp-controller="Catalog" asp-action="Shop">Товары</a></li>
-                                    <li><a asp-controller="Home" asp-action="ProductDetails">Product Details</a></li>
-                                    <li><a asp-controller="Home" asp-action="CheckOut">Checkout</a></li>
-                                    <li><a asp-controller="Cart" asp-action="Details">Корзина</a></li>
-                                    <li><a asp-controller="Account" asp-action="Login">Аккаунт</a></li>
+                                    <li><a asp-controller="Catalog" asp-action="Shop" is-active-route>Товары</a></li>
+                                    <li><a asp-controller="Home" asp-action="ProductDetails" is-active-route>Product Details</a></li>
+                                    <li><a asp-controller="Home" asp-action="CheckOut" is-active-route>Checkout</a></li>
+                                    <li><a asp-controller="Cart" asp-action="Details" is-active-route>Корзина</a></li>
+                                    <li><a asp-controller="Account" asp-action="Login" is-active-route>Аккаунт</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
                                 <a href="#">Blog<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
-                                    <li><a asp-controller="Home" asp-action="Blog">Blog List</a></li>
-                                    <li><a asp-controller="Home" asp-action="BlogSingle">Blog Single</a></li>
+                                    <li><a asp-controller="Home" asp-action="Blog" is-active-route>Blog List</a></li>
+                                    <li><a asp-controller="Home" asp-action="BlogSingle" is-active-route>Blog Single</a></li>
                                 </ul>
                             </li>
-                            <li><a asp-controller="Home" asp-action="PageNotFound">404</a></li>
-                            <li><a asp-controller="Home" asp-action="ContactUs">Contact</a></li>
+                            <li><a asp-controller="Home" asp-action="PageNotFound" is-active-route>404</a></li>
+                            <li><a asp-controller="Home" asp-action="ContactUs" is-active-route>Contact</a></li>
                         </ul>
                     </div>
                 </div>

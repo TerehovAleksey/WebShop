@@ -17,16 +17,23 @@ namespace WebShop.ViewComponents
             _productData = productData;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public async Task<IViewComponentResult> InvokeAsync(string sectionId)
         {
-            var sections = GetSections();
-            return View(sections);
+            int.TryParse(sectionId, out var sectionIdInt);
+            var sections = GetSections(sectionIdInt, out var parentSectionId);
+            return View(new SectionCompleteViewModel()
+            {
+                Sections = sections,
+                CurrentSectionId = sectionIdInt,
+                CurrentParrentSectionId = parentSectionId
+            });
         }
 
-        private List<SectionVewModel> GetSections()
+        private List<SectionVewModel> GetSections(int? sectionId, out int? parentSectionId)
         {
-            var categories = _productData.GetSections();
-            var parentCategories = categories.Where(e => !e.ParentId.HasValue).ToArray();
+            parentSectionId = null;
+            var allSections = _productData.GetSections();
+            var parentCategories = allSections.Where(e => !e.ParentId.HasValue).ToArray();
             var parentSections = new List<SectionVewModel>();
             foreach (var item in parentCategories)
             {
@@ -41,9 +48,14 @@ namespace WebShop.ViewComponents
 
             foreach (var section in parentSections)
             {
-                var childCategories = categories.Where(e => e.ParentId.Equals(section.Id));
+                var childCategories = allSections.Where(e => e.ParentId.Equals(section.Id));
                 foreach (var item in childCategories)
                 {
+                    if (item.Id == sectionId)
+                    {
+                        parentSectionId = section.Id;
+                    }
+
                     section.ChildSection.Add(new SectionVewModel()
                     {
                         Id = item.Id,

@@ -1,0 +1,26 @@
+2018-10-28 13:53:32,421 [22] ?     - Invalid password for user 660737ee-7cef-4f74-b729-ca8586b93065.
+
+2018-10-28 13:53:32,591 [22] ?     - User 660737ee-7cef-4f74-b729-ca8586b93065 failed to provide the correct password.
+
+2018-10-28 13:53:46,388 [26] ?     - Invalid password for user 45a7ff6a-56b4-41c1-90ab-c3dd94bf8f8c.
+
+2018-10-28 13:53:46,483 [26] ?     - User 45a7ff6a-56b4-41c1-90ab-c3dd94bf8f8c failed to provide the correct password.
+
+2018-10-28 13:54:01,915 [7] ?     - Unable to resolve service for type 'WebShop.DAL.WebShopContext' while attempting to activate 'WebShop.Areas.Admin.Controllers.ProductController'.
+
+System.InvalidOperationException: Unable to resolve service for type 'WebShop.DAL.WebShopContext' while attempting to activate 'WebShop.Areas.Admin.Controllers.ProductController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at WebShop.Services.Middleware.ErrorHandlingMiddleware.Invoke(HttpContext context) in C:\WebShop\WebShop\WebShop.Services\Middleware\ErrorHandlingMiddleware.cs:line 21
+2018-10-28 13:54:02,050 [7] ?     - An unhandled exception has occurred while executing the request.
+
