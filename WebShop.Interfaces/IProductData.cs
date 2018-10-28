@@ -11,7 +11,7 @@ namespace WebShop.Interfaces
     public interface IProductData
     {
         /// <summary>
-        /// спмсок секций
+        /// список секций
         /// </summary>
         /// <returns></returns>
         IEnumerable<SectionDto> GetSections();
