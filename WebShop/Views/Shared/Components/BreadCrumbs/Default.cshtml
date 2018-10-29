@@ -3,7 +3,7 @@
 <div class="breadcrumbs">
     <ol class="breadcrumb">
         <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-        <li class="active">Shopping cart</li>
+        <li><a asp-controller="Catalog" asp-action="Shop">Shop</a></li>
         @foreach (var item in Model)
         {
             switch (item.BreadCrumbType)

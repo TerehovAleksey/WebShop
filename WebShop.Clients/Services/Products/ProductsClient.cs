@@ -17,6 +17,13 @@ namespace WebShop.Clients.Services.Products
 
         protected sealed override string ServiceAddress { get; set; }
 
+        public BrandDto GetBrandById(int id)
+        {
+            var url = $"{ServiceAddress}/brands/{id}";
+            var result = Get<BrandDto>(url);
+            return result;
+        }
+
         public IEnumerable<BrandDto> GetBrands()
         {
             var url = $"{ServiceAddress}/brands";
@@ -36,6 +43,13 @@ namespace WebShop.Clients.Services.Products
             var url = $"{ServiceAddress}";
             var responce = Post(url, filter);
             var result = responce.Content.ReadAsAsync<IEnumerable<ProductDto>>().Result;
+            return result;
+        }
+
+        public SectionDto GetSectionById(int id)
+        {
+            var url = $"{ServiceAddress}/sections/{id}";
+            var result = Get<SectionDto>(url);
             return result;
         }
 

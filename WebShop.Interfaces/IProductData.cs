@@ -35,5 +35,9 @@ namespace WebShop.Interfaces
         /// <param name="id"></param>
         /// <returns></returns>
         ProductDto GetProductById(int id);
+
+        SectionDto GetSectionById(int id);
+
+        BrandDto GetBrandById(int id);
     }
 }
