@@ -50,3 +50,11 @@
 
 2018-10-28 14:18:14,714 [7] ?     - The Include operation for navigation '[x].Section' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
 
+2018-10-28 14:56:07,174 [8] ?     - The Include operation for navigation '[x].Brand' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+
+2018-10-28 14:56:07,213 [8] ?     - The Include operation for navigation '[x].Section' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+
+2018-10-28 14:56:34,140 [7] ?     - The Include operation for navigation '[x].Brand' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+
+2018-10-28 14:56:34,154 [7] ?     - The Include operation for navigation '[x].Section' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+

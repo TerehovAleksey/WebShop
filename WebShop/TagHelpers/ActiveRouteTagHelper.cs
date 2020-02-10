@@ -33,7 +33,9 @@ namespace WebShop.TagHelpers
         {
             base.Process(context, output);
 
-            if (ShouldBeActive())
+            bool ignoreAction = context.AllAttributes.TryGetAttribute("ignore-action", out _);
+
+            if (ShouldBeActive(ignoreAction))
             {
                 MakeActive(output);
             }
@@ -56,7 +58,7 @@ namespace WebShop.TagHelpers
             }
         }
 
-        private bool ShouldBeActive()
+        private bool ShouldBeActive(bool ignoreAction)
         {
             var currentController = ViewContext.RouteData.Values["Controller"].ToString();
             var currentAction = ViewContext.RouteData.Values["Action"].ToString();
@@ -66,7 +68,7 @@ namespace WebShop.TagHelpers
                 return false;
             }
 
-            if (!string.IsNullOrWhiteSpace(Action) && !string.Equals(Action, currentAction, StringComparison.CurrentCultureIgnoreCase))
+            if (!ignoreAction && !string.IsNullOrWhiteSpace(Action) && !string.Equals(Action, currentAction, StringComparison.CurrentCultureIgnoreCase))
             {
                 return false;
             }

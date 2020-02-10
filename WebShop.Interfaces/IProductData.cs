@@ -11,7 +11,7 @@ namespace WebShop.Interfaces
     public interface IProductData
     {
         /// <summary>
-        /// спмсок секций
+        /// список секций
         /// </summary>
         /// <returns></returns>
         IEnumerable<SectionDto> GetSections();
@@ -35,5 +35,9 @@ namespace WebShop.Interfaces
         /// <param name="id"></param>
         /// <returns></returns>
         ProductDto GetProductById(int id);
+
+        SectionDto GetSectionById(int id);
+
+        BrandDto GetBrandById(int id);
     }
 }
