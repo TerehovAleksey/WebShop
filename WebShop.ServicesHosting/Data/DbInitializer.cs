@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using WebShop.DAL;
@@ -397,36 +398,34 @@ namespace WebShop.Data
                 }
             };
 
-            using (var trans = context.Database.BeginTransaction())
+            using var trans = context.Database.BeginTransaction();
+            foreach (var item in _brands)
             {
-                foreach (var item in _brands)
-                {
-                    context.Brands.Add(item);
-                }
-                context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[Brands] ON");
-                context.SaveChanges();
-                context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[Brands] OFF");
-
-                foreach (var item in _sections)
-                {
-                    context.Sections.Add(item);
-                }
-                context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[Sections] ON");
-                context.SaveChanges();
-                context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[Sections] OFF");
-
-               
-
-                foreach (var item in _products)
-                {
-                    context.Products.Add(item);
-                }
-                context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[Products] ON");
-                context.SaveChanges();
-                context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[Products] OFF");
-
-                trans.Commit();
+                context.Brands.Add(item);
             }
+            context.Database.ExecuteSql($"SET IDENTITY_INSERT [dbo].[Brands] ON");
+            context.SaveChanges();
+            context.Database.ExecuteSql($"SET IDENTITY_INSERT [dbo].[Brands] OFF");
+
+            foreach (var item in _sections)
+            {
+                context.Sections.Add(item);
+            }
+            context.Database.ExecuteSql($"SET IDENTITY_INSERT [dbo].[Sections] ON");
+            context.SaveChanges();
+            context.Database.ExecuteSql($"SET IDENTITY_INSERT [dbo].[Sections] OFF");
+
+
+
+            foreach (var item in _products)
+            {
+                context.Products.Add(item);
+            }
+            context.Database.ExecuteSql($"SET IDENTITY_INSERT [dbo].[Products] ON");
+            context.SaveChanges();
+            context.Database.ExecuteSql($"SET IDENTITY_INSERT [dbo].[Products] OFF");
+
+            trans.Commit();
         }
     }
 }

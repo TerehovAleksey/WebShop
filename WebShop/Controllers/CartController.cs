@@ -73,7 +73,7 @@ namespace WebShop.Controllers
                     });
                 }
 
-                CreateOrderModel order = new CreateOrderModel()
+                CreateOrderModel order = new()
                 {
                     OrderViewModel = model,
                     OrderItems = items

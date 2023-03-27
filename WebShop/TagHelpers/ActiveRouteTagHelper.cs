@@ -21,7 +21,7 @@ namespace WebShop.TagHelpers
         [HtmlAttributeName("asp-all-route-data", DictionaryAttributePrefix = "asp-route-")]
         public IDictionary<string, string> RouteValues
         {
-            get => _routeValues ?? (_routeValues = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase));
+            get => _routeValues ??= new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             set => _routeValues = value;
         }
 

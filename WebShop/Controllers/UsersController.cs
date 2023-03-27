@@ -37,7 +37,7 @@ namespace WebShop.Controllers
             var userRoles = await _userManager.GetRolesAsync(user);
             var allRoles = _roleManager.Roles.ToList();
 
-            EditUserViewModel model = new EditUserViewModel
+            EditUserViewModel model = new()
             {
                 Email = user.Email,
                 Id = user.Id,

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using WebShop.Clients.Services.Employees;
@@ -22,10 +23,12 @@ namespace WebShop
     public class Startup
     {
         public IConfiguration Configuration { get; }
+        public IWebHostEnvironment Environment { get; }
 
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Configuration = configuration;
+            Environment = environment;
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -79,7 +82,7 @@ namespace WebShop
             services.ConfigureApplicationCookie(o =>
             {
                 o.Cookie.HttpOnly = true;
-                o.Cookie.Expiration = TimeSpan.FromDays(30);
+                //o.Cookie.Expiration = TimeSpan.FromDays(30);
                 o.LoginPath = "/Account/Login";
                 o.LogoutPath = "/Account/Logout";
                 o.AccessDeniedPath = "/Account/AccessDenied";
@@ -90,11 +93,11 @@ namespace WebShop
             services.AddMvc();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddLog4Net();
 
-            if (env.IsDevelopment())
+            if (Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -104,22 +107,14 @@ namespace WebShop
             }
 
             app.UseStaticFiles();
-
+            app.UseRouting();
             app.UseAuthentication();
-
             app.UseStatusCodePagesWithRedirects("~/Home/ErrorStatus/{0}");
-
             app.UseMiddleware(typeof(ErrorHandlingMiddleware));
-
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
-                name: "areas",
-                template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("AdminArea", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

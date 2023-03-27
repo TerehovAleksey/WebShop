@@ -13,7 +13,7 @@ namespace WebShop.Logger
         private readonly string _name;
         private readonly XmlElement _xmlElement;
         private readonly ILog _log;
-        private ILoggerRepository _loggerRepository;
+        private readonly ILoggerRepository _loggerRepository;
 
         public Log4NetLogger(string name, XmlElement xmlElement)
         {
@@ -31,24 +31,16 @@ namespace WebShop.Logger
 
         public bool IsEnabled(LogLevel logLevel)
         {
-            switch (logLevel)
+            return logLevel switch
             {
-                case LogLevel.Critical:
-                    return _log.IsFatalEnabled;
-                case LogLevel.Debug:
-                case LogLevel.Trace:
-                    return _log.IsDebugEnabled;
-                case LogLevel.Information:
-                    return _log.IsInfoEnabled;
-                case LogLevel.Warning:
-                    return _log.IsWarnEnabled;
-                case LogLevel.Error:
-                    return _log.IsErrorEnabled;
-                case LogLevel.None:
-                    return false;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(logLevel));
-            }
+                LogLevel.Critical => _log.IsFatalEnabled,
+                LogLevel.Debug or LogLevel.Trace => _log.IsDebugEnabled,
+                LogLevel.Information => _log.IsInfoEnabled,
+                LogLevel.Warning => _log.IsWarnEnabled,
+                LogLevel.Error => _log.IsErrorEnabled,
+                LogLevel.None => false,
+                _ => throw new ArgumentOutOfRangeException(nameof(logLevel)),
+            };
         }
 
         public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)

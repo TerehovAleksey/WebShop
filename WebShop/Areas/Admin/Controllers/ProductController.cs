@@ -20,9 +20,9 @@ namespace WebShop.Areas.Admin.Controllers
     {
         private readonly IProductData _productData;
         private readonly WebShopContext _context;
-        private readonly IHostingEnvironment _appEnvironment;
+        private readonly IWebHostEnvironment _appEnvironment;
 
-        public ProductController(IProductData productData, IHostingEnvironment appEnvironment, WebShopContext context)
+        public ProductController(IProductData productData, IWebHostEnvironment appEnvironment, WebShopContext context)
         {
             _productData = productData;
             _context = context;
@@ -74,10 +74,8 @@ namespace WebShop.Areas.Admin.Controllers
                 {
                     string pictureName = Path.GetFileName(model.Image.FileName);
                     string path = "/images/shop/" + pictureName;
-                    using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
-                    {
-                        await model.Image.CopyToAsync(fileStream);
-                    }
+                    using var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create);
+                    await model.Image.CopyToAsync(fileStream);
                 }
 
                 //добавление

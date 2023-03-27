@@ -6,8 +6,6 @@ using System.Linq;
 using WebShop.Domain.Entities;
 using WebShop.Domain.Entities.Base;
 using WebShop.Interfaces;
-using WebShop.Domain.Models.Cart;
-using WebShop.Domain.Models.Order;
 using WebShop.DAL;
 using WebShop.Domain.Dto.Order;
 
@@ -71,38 +69,34 @@ namespace WebShop.Services.Sql
             {
                 user = _userManager.FindByNameAsync(userName).Result;
             }
-            
-            using (var transaction = _context.Database.BeginTransaction())
+
+            using var transaction = _context.Database.BeginTransaction();
+            var order = new Order()
             {
-                var order = new Order()
+                Address = orderModel.OrderViewModel.Address,
+                Name = orderModel.OrderViewModel.Name,
+                Date = DateTime.Now,
+                Phone = orderModel.OrderViewModel.Phone,
+                User = user
+            };
+
+            _context.Orders.Add(order);
+
+            foreach (var item in orderModel.OrderItems)
+            {
+                var product = _context.Products.FirstOrDefault(x => x.Id.Equals(item.Id)) ?? throw new InvalidOperationException("Продукт не найден в базе");
+                var orderItem = new OrderItem()
                 {
-                    Address = orderModel.OrderViewModel.Address,
-                    Name = orderModel.OrderViewModel.Name,
-                    Date = DateTime.Now,
-                    Phone = orderModel.OrderViewModel.Phone,
-                    User = user
+                    Order = order,
+                    Price = product.Price,
+                    Quantity = item.Quantity,
+                    Product = product
                 };
-
-                _context.Orders.Add(order);
-
-                foreach (var item in orderModel.OrderItems)
-                {
-                    var product = _context.Products.FirstOrDefault(x => x.Id.Equals(item.Id));
-                    if (product == null)
-                        throw new InvalidOperationException("Продукт не найден в базе");
-                    var orderItem = new OrderItem()
-                    {
-                        Order = order,
-                        Price = product.Price,
-                        Quantity = item.Quantity,
-                        Product = product
-                    };
-                    _context.OrderItems.Add(orderItem);
-                }
-                _context.SaveChanges();
-                transaction.Commit();
-                return GetOrderById(order.Id);
+                _context.OrderItems.Add(orderItem);
             }
+            _context.SaveChanges();
+            transaction.Commit();
+            return GetOrderById(order.Id);
         }
     }
 }

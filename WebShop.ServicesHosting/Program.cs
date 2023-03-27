@@ -33,7 +33,7 @@ namespace WebShop.ServicesHosting
                     var roleStore = new RoleStore<IdentityRole>(context);
                     var roleManager = new RoleManager<IdentityRole>
                         (roleStore,
-                        new IRoleValidator<IdentityRole>[] { },
+                        Array.Empty<IRoleValidator<IdentityRole>>(),
                         new UpperInvariantLookupNormalizer(),
                         new IdentityErrorDescriber(), null);
                     if (!roleManager.RoleExistsAsync(Constants.Roles.User).Result)
@@ -50,10 +50,10 @@ namespace WebShop.ServicesHosting
                     var userManager = new UserManager<ApplicationUser>
                         (userStore,
                         new OptionsManager<IdentityOptions>
-                        (new OptionsFactory<IdentityOptions>(new IConfigureOptions<IdentityOptions>[] { }, new IPostConfigureOptions<IdentityOptions>[] { })),
+                        (new OptionsFactory<IdentityOptions>(Array.Empty<IConfigureOptions<IdentityOptions>>(), Array.Empty<IPostConfigureOptions<IdentityOptions>>())),
                         new PasswordHasher<ApplicationUser>(),
-                        new IUserValidator<ApplicationUser>[] { },
-                        new IPasswordValidator<ApplicationUser>[] { },
+                        Array.Empty<IUserValidator<ApplicationUser>>(),
+                        Array.Empty<IPasswordValidator<ApplicationUser>>(),
                         new UpperInvariantLookupNormalizer(),
                         new IdentityErrorDescriber(),
                         null, null
